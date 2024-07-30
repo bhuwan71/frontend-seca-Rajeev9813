@@ -1,0 +1,145 @@
+
+                .admin-dashboard-container {
+                    background-image: url('https://removal.ai/wp-content/uploads/2021/09/black-background-04-coolbackgrounds.png');
+                    background-size: cover;
+                    background-position: center;
+                    min-height: 100vh;
+                    padding: 20px;
+                    color: white;
+                }
+                
+                .admin-header {
+                    margin-top: 50px;
+                }
+
+                .add-course-button {
+                    text-align: end;
+                }
+                
+                .course-table {
+                    margin-top: 30px;
+                }
+                
+                .footer {
+                    padding: 10px;
+                    background-color: #343a40;
+                }
+                
+                .table {
+                    background-color: rgba(0, 0, 0, 0.8);
+                }
+                
+                .btn {
+                    background-color: #6c757d;
+                    color: white;
+                }
+                
+                .btn-primary {
+                    background-color: #007bff;
+                }
+                
+                .btn-primary:hover {
+                    background-color: #0069d9;
+                }
+                
+                .btn-danger {
+                    background-color: #dc3545;
+                }
+                
+                .btn-danger:hover {
+                    background-color: #c82333;
+                }
+                 .footer,
+            .footer a {
+              color: #999;
+              font-size: 0.9rem;
+            }
+            .footer p {
+              margin-bottom: 1.5rem;
+              padding-left: 50px;
+            }
+            .footer .footer-cols {
+              display: grid;
+              grid-template-columns: repeat(4,1fr);
+              grid-gap: 2rem;
+              padding-left: 50px;
+            }
+            .footer li {
+              line-height: 1.9;
+              list-style: none;
+            }
+            .languages_dropdown2 {
+              background: transparent;
+              border: none;
+              color: white;
+            }
+            .dropdown2_container {
+              border: 1px solid white;
+              padding: 0.4rem;
+              border-radius: 4px;
+              background: rgba(0,0,0,0.4);
+              width: 10%;
+              margin-top: 16px;
+              margin-left: 40px;
+            }
+            .drop {
+              color: black;
+            }
+            .copyright-txt {
+              font-size: 14px;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              color: #9b9696;
+            }
+            .signin_button a {
+              text-decoration: none;
+              color: white;
+            }
+            .footer,
+            .footer a {
+              color: #999;
+              font-size: 0.9rem;
+            }
+            .footer p {
+              margin-bottom: 1.5rem;
+              padding-left: 50px;
+            }
+            .footer .footer-cols {
+              display: grid;
+              grid-template-columns: repeat(4,1fr);
+              grid-gap: 2rem;
+              padding-left: 50px;
+            }
+            .footer li {
+              line-height: 1.9;
+              list-style: none;
+            }
+            .languages_dropdown2 {
+              background: transparent;
+              border: none;
+              color: white;
+            }
+            .dropdown2_container {
+              border: 1px solid white;
+              padding: 0.4rem;
+              border-radius: 4px;
+              background: rgba(0,0,0,0.4);
+              width: 10%;
+              margin-top: 16px;
+              margin-left: 40px;
+            }
+            .drop {
+              color: black;
+            }
+            .copyright-txt {
+              font-size: 14px;
+              margin-top: 20px;
+              margin-bottom: 10px;
+              color: #9b9696;
+            }
+            .signin_button a {
+              text-decoration: none;
+              color: white;
+            }
+                
+            
