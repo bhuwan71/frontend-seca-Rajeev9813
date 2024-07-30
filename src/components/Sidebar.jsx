@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import { IoIosPeople } from "react-icons/io";
@@ -63,7 +63,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="admin/dashboard">
+        <NavLink to="/*">
           <img src={Logo} alt="Logo" className="w-40 h-25 mt-[-20px]  " />
         </NavLink>
         <button
@@ -102,9 +102,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   Dashboard
                 </h2>
                 <NavLink
-                  to="admin/dashboard"
+                  to="/admin/dashboard"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("admin/dashboard")
+                    pathname.startsWith("/admin/dashboard")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}
@@ -116,9 +116,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <li>
                 <NavLink
-                  to="admin/courses"
+                  to="/admin/courses"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("admin/jobs")
+                    pathname.startsWith("/admin/courses")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}
@@ -129,9 +129,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </li>
               <li>
                 <NavLink
-                  to="admin/category"
+                  to="/admin/category"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("admin/jobs")
+                    pathname.startsWith("/admin/category")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}
@@ -189,7 +189,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li>
                             <NavLink
-                              to="/users/job-seekers"
+                              to="/users/teacher"
                               className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
                                 pathname.startsWith("/users/employee-list")
                                   ? "bg-[#EDE7F6]  text-[#5E35B1]"
@@ -201,14 +201,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                           <li>
                             <NavLink
-                              to="admin/users/employers"
+                              to="/users/student"
                               className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                                pathname.startsWith("/users/customer-list")
+                                pathname.startsWith("/users/employee-list")
                                   ? "bg-[#EDE7F6]  text-[#5E35B1]"
                                   : ""
                               }`}
                             >
-                              Teacher
+                              Student
                             </NavLink>
                           </li>
                         </ul>
@@ -225,9 +225,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <NavLink
-                  to="admin/assignment"
+                  to="/admin/assignment"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("/slider")
+                    pathname.startsWith("/admin/assignment")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}

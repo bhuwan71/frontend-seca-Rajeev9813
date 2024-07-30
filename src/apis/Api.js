@@ -44,3 +44,4 @@ export const updateCourse = (id, data) =>
   Api.put(`/api/course/update_course/${id}`, data, config);
 
 // http://localhost:5000/test
+export default Api;
