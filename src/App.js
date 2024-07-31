@@ -20,6 +20,8 @@ import CourseAction from "./pages/admin/course/Action";
 import Users from "./pages/admin/user";
 import UserAction from "./pages/admin/user/Action";
 import AdminProfile from "./pages/admin/profile";
+import Quizzes from "./pages/admin/quiz";
+import QuizAction from "./pages/admin/quiz/Action";
 
 // Task create for login and register
 function App() {
@@ -38,10 +40,14 @@ function App() {
         <Route path="/admin/profile" element={<AdminProfile />} />
         <Route path="/admin/courses" element={<Course />} />
         <Route path="/admin/courses/CourseAdd" element={<CourseAction />} />
-        <Route path="/admin/courses/:id" element={<CourseAction />} />
+        <Route path="/admin/course/:id" element={<CourseAction />} />
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/user/UserAdd" element={<UserAction />} />
         <Route path="/admin/user/:id" element={<UserAction />} />
+
+        <Route path="/admin/quizzes" element={<Quizzes />} />
+        <Route path="/admin/quizzes/QuizzesAdd" element={<QuizAction />} />
+        <Route path="/admin/quizzes/:id" element={<QuizAction />} />
 
         {/* </Route> */}
 

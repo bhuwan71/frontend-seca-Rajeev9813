@@ -7,6 +7,7 @@ import { IoSpeedometerOutline } from "react-icons/io5";
 import { MdWorkHistory } from "react-icons/md";
 import Logo from "../img/logo.png";
 import { MdOutlineCategory } from "react-icons/md";
+import { FaSlidersH } from "react-icons/fa";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -232,25 +233,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </SidebarLinkGroup> */}
             </ul>
           </div>
-          {/* <div>
+          <div>
             <hr className="border-none bg-[#EEF2F6] h-px mt-2 mb-2" />
             <h3 className="mb-2 text-white text-sm font-semibold text-black">OTHERS</h3>
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <NavLink
-                  to="/admin/assignment"
+                  to="/admin/quizzes"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
                     pathname.startsWith("/admin/assignment")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}
                 >
-                  <FaSliders size={24} />
-                  Assignment
+                  <FaSlidersH size={24} />
+                  Quizzes
                 </NavLink>
               </li>
             </ul>
-          </div> */}
+          </div>
         </nav>
       </div>
     </aside>

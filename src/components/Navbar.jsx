@@ -15,12 +15,12 @@ const Navbar = () => {
   return (
     <nav className="bg-black shadow-lg z-10 fixed w-full">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center ">
           <div className="flex items-center">
             <img
               src="assets/images/logo.png"
               alt="Logo"
-              className="h-10 w-28 bg-white rounded-full"
+              className="h-[100px] w-[200px]"
             />
           </div>
           <ul className="flex space-x-4">

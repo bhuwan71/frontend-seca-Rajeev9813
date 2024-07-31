@@ -66,11 +66,10 @@ const CourseAction = () => {
     try {
       let promise;
       if (id) {
-        promise = Api.patch(`/courses/${parseInt(id)}`, formData);
+        promise = Api.put(`/course/update_course/${id}`, formData);
       } else {
-        promise = Api.post("/courses", formData);
+        promise = Api.post("/course/create", formData);
       }
-
       const toastMessage = id ? "Course Updated Successfully" : "Course Added";
       await toast.promise(promise, {
         pending: id ? "Updating Course..." : "Adding Course...",
@@ -85,8 +84,7 @@ const CourseAction = () => {
         progress: undefined,
         theme: "light",
       });
-
-      navigate("/courses");
+      navigate(`/admin/courses`);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -107,12 +105,15 @@ const CourseAction = () => {
 
   const fetchData = async () => {
     try {
-      const response = await Api.get(`/courses/${parseInt(id)}`);
+      const response = await Api.get(`course/get_single_course/${id}`);
       if (response) {
-        setValue("courseName", response?.data?.data?.name);
-        setValue("coursePrice", response?.data?.data?.price);
-        setValue("courseCategory", response?.data?.data?.category);
-        setValue("courseDescription", response?.data?.data?.description);
+        setValue("courseName", response?.data?.course?.courseName);
+        setValue("coursePrice", response?.data?.course?.coursePrice);
+        setValue("courseCategory", response?.data?.course?.courseCategory);
+        setValue(
+          "courseDescription",
+          response?.data?.course?.courseDescription
+        );
         setFileList([
           {
             uid: "-1",
@@ -141,7 +142,7 @@ const CourseAction = () => {
                   Course Name
                 </label>
                 <input
-                  className={`w-full rounded border ${
+                  className={`w-full p-3 rounded border ${
                     errors.courseName ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
                   type="text"
@@ -163,17 +164,17 @@ const CourseAction = () => {
                   Course Price
                 </label>
                 <input
-                  className={`w-full rounded border ${
+                  className={`w-full p-3 rounded border ${
                     errors.coursePrice ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
-                  type="text"
+                  type="number"
                   {...register("coursePrice", {
                     required: "Course Price is required",
                   })}
                 />
                 {errors.coursePrice && (
                   <span className="text-error text-danger text-sm mt-1">
-                    {errors.coursePrice.message}
+                    {errors?.coursePrice?.message}
                   </span>
                 )}
               </div>
@@ -187,7 +188,7 @@ const CourseAction = () => {
                   Course Category
                 </label>
                 <input
-                  className={`w-full rounded border ${
+                  className={`w-full p-3 rounded border ${
                     errors.courseCategory ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
                   type="text"
@@ -203,13 +204,13 @@ const CourseAction = () => {
               </div>
               <div className="mb-5.5 w-full">
                 <label
-                  className="mb-3 block text-sm font-medium text-black dark:text-white"
+                  className="mb-3 p-3 block text-sm font-medium text-black dark:text-white"
                   htmlFor="courseDescription"
                 >
                   Course Description
                 </label>
                 <textarea
-                  className={`w-full rounded border ${
+                  className={`w-full p-3 rounded border ${
                     errors.courseDescription ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
                   {...register("courseDescription", {
@@ -226,7 +227,7 @@ const CourseAction = () => {
             <div className="grid grid-cols-2 gap-5 px-2">
               <div className="mb-5.5">
                 <label
-                  className="mb-3 block text-sm font-medium text-black dark:text-white"
+                  className="mb-3 p-3 block text-sm font-medium text-black dark:text-white"
                   htmlFor="image"
                 >
                   Course Image

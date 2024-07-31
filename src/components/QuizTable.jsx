@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const { confirm } = Modal;
 
-const CourseTable = ({ heading, tableData, loading, fetchData }) => {
+const QuizTable = ({ heading, tableData, loading, fetchData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState(tableData);
   const [searchTerm, setSearchTerm] = useState("");
@@ -79,7 +79,6 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
   const handleEdit = (rowData) => {
     navigate(`/admin/course/${rowData._id}`);
   };
-  
 
   const handleImageClick = (url) => {
     setModalImageUrl(url);
@@ -132,7 +131,7 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
                 type="text"
                 id="table-search-users"
                 className="block px-10 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search for Courses"
+                placeholder="Search for Quiz"
                 onChange={handleSearch}
               />
             </div>
@@ -147,12 +146,13 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
             <table className="w-full shadow-xl text-sm text-left text-gray-500 dark:text-gray-dark">
               <thead className="text-xs bg-black text-white text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                 <tr>
-                  <th className="px-6 py-3">Image</th>
-                  <th className="px-6 py-3">Name</th>
-                  <th className="px-6 py-3">Category</th>
-                  <th className="px-6 py-3">Price</th>
-                  <th className="px-6 py-3">Description</th>
-                  <th className="px-6 py-3">Action</th>
+                  <th className="px-4 py-3">Quiz Name</th>
+                  <th className="px-4 py-3">Category</th>
+                  <th className="px-4 py-3">Number of Questions</th>
+                  <th className="px-4 py-3">Difficulty Level</th>
+                  <th className="px-4 py-3">Duration (mins)</th>
+                  <th className="px-4 py-3">Description</th>
+                  <th className="px-4 py-3">Actions</th>
                 </tr>
               </thead>
               {filteredData && filteredData?.length > 0 ? (
@@ -172,7 +172,9 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
                       <td className="px-6 py-4">{rowData?.courseName}</td>
                       <td className="px-6 py-4">{rowData?.courseCategory}</td>
                       <td className="px-6 py-4">{rowData?.coursePrice}</td>
-                      <td className="px-6 py-4">{rowData?.courseDescription}</td>
+                      <td className="px-6 py-4">
+                        {rowData?.courseDescription}
+                      </td>
                       <td className="flex py-5 gap-2">
                         <button
                           onClick={() => handleEdit(rowData)}
@@ -222,4 +224,4 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
   );
 };
 
-export default CourseTable;
+export default QuizTable;

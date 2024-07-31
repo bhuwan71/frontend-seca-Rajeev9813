@@ -1,111 +1,42 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { createCourseApi, deleteCourse, getAllCourse } from "../../../apis/Api";
-import "./Dashboard.css"; // Importing Dashboard.css for internal styling
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import React from "react";
+import { FaTachometerAlt, FaUserCog, FaChartLine, FaQuestionCircle, FaUsers } from "react-icons/fa";
+import "./Dashboard.css"; // Importing Dashboard.css for any additional internal styling
 import Layout from "./layout";
 
 const AdminDashboard = () => {
-  const [course, setCourse] = useState([]);
-  const [courseName, setCourseName] = useState("");
-  const [coursePrice, setCoursePrice] = useState("");
-  const [courseCategory, setCourseCategory] = useState("Basic");
-  const [courseDescription, setCourseDescription] = useState("");
-  const [courseImage, setCourseImage] = useState("");
-  const [previewImage, setPreviewImage] = useState("");
-
-  useEffect(() => {
-    getAllCourse()
-      .then((res) => {
-        setCourse(res.data.course);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  const handleImage = (event) => {
-    const file = event.target.files[0];
-    setCourseImage(file);
-    setPreviewImage(URL.createObjectURL(file));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("courseName", courseName);
-    formData.append("coursePrice", coursePrice);
-    formData.append("courseCategory", courseCategory);
-    formData.append("courseDescription", courseDescription);
-    formData.append("courseImage", courseImage);
-
-    createCourseApi(formData)
-      .then((res) => {
-        if (res.status === 201) {
-          toast.success(res.data.message);
-          getAllCourse().then((res) => {
-            setCourse(res.data.course);
-          });
-          resetForm();
-        }
-      })
-      .catch((error) => {
-        handleApiError(error);
-      });
-  };
-
-  const handleDelete = (id) => {
-    const confirmDialog = window.confirm("Are you sure to delete this course?");
-    if (confirmDialog) {
-      deleteCourse(id)
-        .then((res) => {
-          if (res.status === 201) {
-            toast.success(res.data.message);
-            getAllCourse().then((res) => {
-              setCourse(res.data.course);
-            });
-          }
-        })
-        .catch((error) => {
-          handleApiError(error);
-        });
-    }
-  };
-
-  const resetForm = () => {
-    setCourseName("");
-    setCoursePrice("");
-    setCourseCategory("Basic");
-    setCourseDescription("");
-    setCourseImage("");
-    setPreviewImage("");
-  };
-
-  const handleApiError = (error) => {
-    if (error.response) {
-      if (error.response.status === 400) {
-        toast.warning(error.response.data.message);
-      } else if (error.response.status === 500) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Something went wrong!");
-      }
-    } else {
-      toast.error("Something went wrong!");
-    }
-  };
-
   return (
-    <div>
-      <Layout>
-        <h1 className="text-4xl text-center  py-20">
+    <Layout>
+      <div className="max-w-4xl mx-auto py-10 px-4">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
           Welcome to My Learning System
         </h1>
-      </Layout>
-    </div>
+        <p className="text-lg text-center text-gray-600 mb-8">
+          Manage your learning system effectively with the tools below.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-blue-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:bg-blue-600 transition">
+            <FaTachometerAlt className="text-3xl" />
+            <span className="text-xl font-semibold">Dashboard</span>
+          </div>
+          <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:bg-green-600 transition">
+            <FaUserCog className="text-3xl" />
+            <span className="text-xl font-semibold">Admin Settings</span>
+          </div>
+          <div className="bg-purple-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:bg-purple-600 transition">
+            <FaChartLine className="text-3xl" />
+            <span className="text-xl font-semibold">Quizzes</span>
+          </div>
+          <div className="bg-yellow-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:bg-yellow-600 transition">
+            <FaQuestionCircle className="text-3xl" />
+            <span className="text-xl font-semibold">FAQ</span>
+          </div>
+          <div className="bg-red-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:bg-red-600 transition">
+            <FaUsers className="text-3xl" />
+            <span className="text-xl font-semibold">User Management</span>
+          </div>
+        </div>
+      </div>
+    </Layout>
   );
 };
 
