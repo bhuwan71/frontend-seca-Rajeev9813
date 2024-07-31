@@ -11,7 +11,7 @@ import React from "react";
 
 const { confirm } = Modal;
 
-const CourseTable = ({ heading, tableData, loading, fetchData }) => {
+const UserTable = ({ heading, tableData, loading, fetchData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState(tableData);
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,7 +58,7 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
 
   const showDeleteConfirm = (rowData) => {
     confirm({
-      title: "Are you sure delete this Courses?",
+      title: "Are you sure delete this Users?",
       icon: <ExclamationCircleFilled />,
       content: `${rowData.title}`,
       okText: "Yes",
@@ -125,7 +125,7 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
                 id="table-search-users"
                 className="block px-10  py-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for Courses"
-                onChange={handleSearch} 
+                onChange={handleSearch}
               />
             </div>
           </div>
@@ -139,10 +139,9 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
             <table className="w-full shadow-xl text-sm text-left text-gray-500 dark:text-gray-dark">
               <thead className="text-xs bg-black text-white text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                 <tr>
-                  <th className="px-6 py-3">Name</th>
-                  <th className="px-6 py-3">Category</th>
-                  <th className="px-6 py-3">Price</th>
-                  <th className="px-6 py-3">Description</th>
+                  <th className="px-6 py-3">First Name</th>
+                  <th className="px-6 py-3">Last Name</th>
+                  <th className="px-6 py-3">Email</th>
                   <th className="px-6 py-3">Action</th>
                 </tr>
               </thead>
@@ -178,7 +177,7 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
                   <tr>
                     <td colSpan={4} className="text-center py-20">
                       <p className="text-lg dark:text-white text-gray-500">
-                        No Courses found.
+                        No Users found.
                       </p>
                     </td>
                   </tr>
@@ -205,4 +204,4 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
   );
 };
 
-export default CourseTable;
+export default UserTable;

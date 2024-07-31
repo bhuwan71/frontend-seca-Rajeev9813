@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-import { IoIosPeople } from "react-icons/io";
-import { FaSliders } from "react-icons/fa6";
+// import SidebarLinkGroup from "./SidebarLinkGroup";
+// import { IoIosPeople } from "react-icons/io";
+// import { FaSliders } from "react-icons/fa6";
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { MdWorkHistory } from "react-icons/md";
 import Logo from "../img/logo.png";
@@ -127,7 +127,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   Courses
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/admin/category"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
@@ -139,8 +139,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   <MdOutlineCategory />
                   Category
                 </NavLink>
+              </li> */}
+              <li>
+                <NavLink
+                  to="/admin/users"
+                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
+                    pathname.startsWith("/admin/category")
+                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
+                      : ""
+                  }`}
+                >
+                  <MdOutlineCategory />
+                  Users
+                </NavLink>
               </li>
-              <SidebarLinkGroup
+              {/* <SidebarLinkGroup
                 activeCondition={
                   pathname === "admin/users" || pathname.includes("users")
                 }
@@ -216,12 +229,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup>
+              </SidebarLinkGroup> */}
             </ul>
           </div>
-          <div>
+          {/* <div>
             <hr className="border-none bg-[#EEF2F6] h-px mt-2 mb-2" />
-            <h3 className="mb-2 text-sm font-semibold text-black">OTHERS</h3>
+            <h3 className="mb-2 text-white text-sm font-semibold text-black">OTHERS</h3>
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <NavLink
@@ -237,7 +250,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </NavLink>
               </li>
             </ul>
-          </div>
+          </div> */}
         </nav>
       </div>
     </aside>

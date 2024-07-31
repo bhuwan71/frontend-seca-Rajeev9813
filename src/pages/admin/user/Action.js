@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Api from "../../../apis/Api";
 import Layout from "../admin_dashboard/layout";
 
-const CourseAction = () => {
+const UserAction = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -40,29 +40,26 @@ const CourseAction = () => {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
+  // const handlePreview = async (file) => {
+  //   if (!file.url && !file.preview) {
+  //     file.preview = await getBase64(file.originFileObj);
+  //   }
 
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-    );
-  };
+  //   setPreviewImage(file.url || file.preview);
+  //   setPreviewOpen(true);
+  //   setPreviewTitle(
+  //     file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+  //   );
+  // };
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   const onSubmit = async (data) => {
     const formData = new FormData();
     if (fileList.length > 0 && fileList[0]?.originFileObj) {
-      formData.append("courseImage", fileList[0]?.originFileObj);
+      formData.append("icon", fileList[0]?.originFileObj);
     }
-    formData.append("courseName", data.courseName);
-    formData.append("coursePrice", data.coursePrice);
-    formData.append("courseCategory", data.courseCategory);
-    formData.append("courseDescription", data.courseDescription);
+    formData.append("name", data.title);
     try {
       let promise;
       if (id) {
@@ -71,7 +68,7 @@ const CourseAction = () => {
         promise = Api.post("/courses", formData);
       }
 
-      const toastMessage = id ? "Course Updated Successfully" : "Course Added";
+      const toastMessage = id ? "Courses Update Successfully" : "Courses Added";
       await toast.promise(promise, {
         pending: id ? "Updating Course..." : "Adding Course...",
         success: toastMessage,
@@ -98,21 +95,18 @@ const CourseAction = () => {
     }
   }, [id, setValue]);
 
-  const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
+  // const uploadButton = (
+  //   <div>
+  //     <PlusOutlined />
+  //     <div style={{ marginTop: 8 }}>Upload</div>
+  //   </div>
+  // );
 
   const fetchData = async () => {
     try {
       const response = await Api.get(`/courses/${parseInt(id)}`);
       if (response) {
-        setValue("courseName", response?.data?.data?.name);
-        setValue("coursePrice", response?.data?.data?.price);
-        setValue("courseCategory", response?.data?.data?.category);
-        setValue("courseDescription", response?.data?.data?.description);
+        setValue("title", response?.data?.data?.title);
         setFileList([
           {
             uid: "-1",
@@ -132,127 +126,72 @@ const CourseAction = () => {
       <Layout>
         <div className="bg-white p-4 rounded-xl shadow-4">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex gap-5 flex-col lg:flex-row">
-              <div className="mb-5.5 w-full">
+            <div className="flex  gap-5 flex-col lg:flex-row">
+              <div className="mb-5.5 w-full ">
                 <label
                   className="mb-3 block text-sm font-medium text-black dark:text-white"
-                  htmlFor="courseName"
+                  htmlFor="age"
                 >
-                  Course Name
+                  First Name
                 </label>
                 <input
                   className={`w-full rounded border ${
-                    errors.courseName ? "border-error" : "border-stroke"
+                    errors.title ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
                   type="text"
-                  {...register("courseName", {
-                    required: "Course Name is required",
+                  {...register("firstName", {
+                    required: "Courses Name is required",
                   })}
                 />
-                {errors.courseName && (
+                {errors.title && (
                   <span className="text-error text-danger text-sm mt-1">
-                    {errors.courseName.message}
+                    {errors.title.message}
                   </span>
                 )}
               </div>
-              <div className="mb-5.5 w-full">
+              <div className="mb-5.5 w-full ">
                 <label
                   className="mb-3 block text-sm font-medium text-black dark:text-white"
-                  htmlFor="coursePrice"
+                  htmlFor="age"
                 >
-                  Course Price
+                  Last Name
                 </label>
                 <input
                   className={`w-full rounded border ${
-                    errors.coursePrice ? "border-error" : "border-stroke"
+                    errors.title ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
                   type="text"
-                  {...register("coursePrice", {
+                  {...register("lastName", {
                     required: "Course Price is required",
                   })}
                 />
-                {errors.coursePrice && (
+                {errors.title && (
                   <span className="text-error text-danger text-sm mt-1">
-                    {errors.coursePrice.message}
+                    {errors.title.message}
                   </span>
                 )}
               </div>
-            </div>
-            <div className="flex my-4 gap-5 flex-col lg:flex-row">
-              <div className="mb-5.5 w-full">
+              <div className="mb-5.5 w-full ">
                 <label
                   className="mb-3 block text-sm font-medium text-black dark:text-white"
-                  htmlFor="courseCategory"
+                  htmlFor="age"
                 >
-                  Course Category
+                  Email
                 </label>
                 <input
                   className={`w-full rounded border ${
-                    errors.courseCategory ? "border-error" : "border-stroke"
+                    errors.title ? "border-error" : "border-stroke"
                   } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
-                  type="text"
-                  {...register("courseCategory", {
-                    required: "Course Category is required",
+                  type="email"
+                  {...register("email", {
+                    required: "Email Price is required",
                   })}
                 />
-                {errors.courseCategory && (
+                {errors.title && (
                   <span className="text-error text-danger text-sm mt-1">
-                    {errors.courseCategory.message}
+                    {errors.title.message}
                   </span>
                 )}
-              </div>
-              <div className="mb-5.5 w-full">
-                <label
-                  className="mb-3 block text-sm font-medium text-black dark:text-white"
-                  htmlFor="courseDescription"
-                >
-                  Course Description
-                </label>
-                <textarea
-                  className={`w-full rounded border ${
-                    errors.courseDescription ? "border-error" : "border-stroke"
-                  } bg-gray py-1 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary`}
-                  {...register("courseDescription", {
-                    required: "Course Description is required",
-                  })}
-                />
-                {errors.courseDescription && (
-                  <span className="text-error text-danger text-sm mt-1">
-                    {errors.courseDescription.message}
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-5 px-2">
-              <div className="mb-5.5">
-                <label
-                  className="mb-3 block text-sm font-medium text-black dark:text-white"
-                  htmlFor="image"
-                >
-                  Course Image
-                </label>
-                <Upload
-                  action=""
-                  listType="picture-card"
-                  fileList={fileList}
-                  beforeUpload={beforeUpload}
-                  onPreview={handlePreview}
-                  onChange={handleChange}
-                >
-                  {fileList.length >= 1 ? null : uploadButton}
-                </Upload>
-                <Modal
-                  open={previewOpen}
-                  title={previewTitle}
-                  footer={null}
-                  onCancel={handleCancel}
-                >
-                  <img
-                    alt="example"
-                    style={{ width: "100%" }}
-                    src={previewImage}
-                  />
-                </Modal>
               </div>
             </div>
             <div className="flex justify-end gap-4.5">
@@ -270,11 +209,11 @@ const CourseAction = () => {
   );
 };
 
-export default CourseAction;
+export default UserAction;
 
-function getBase64(file, callback) {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => callback(reader.result);
-  reader.onerror = (error) => console.error("Error: ", error);
-}
+// function getBase64(file, callback) {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = () => callback(reader.result);
+//   reader.onerror = (error) => console.error("Error: ", error);
+// }
