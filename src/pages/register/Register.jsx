@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUserApi } from "../../apis/Api";
 import Navbar from "../../components/Navbar";
+import {useNavigate} from "react-router-dom"
 
 const Register = () => {
   // State for 5 Fields
@@ -17,6 +18,8 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const navigate = useNavigate();
 
   // Handle input changes and reset error messages
   const handleFirstname = (e) => {
@@ -93,7 +96,12 @@ const Register = () => {
         toast.error(res.data.message);
       } else {
         toast.success(res.data.message);
+
+        setTimeout(()=>{
+          navigate("/login")
+        },200)
       }
+      
     });
   };
   return (

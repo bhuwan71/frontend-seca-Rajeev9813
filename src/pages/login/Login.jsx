@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { loginUserApi } from '../../apis/Api';
 import Navbar from '../../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -10,6 +11,8 @@ const Login = () => {
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+
+  const navigate= useNavigate();
 
   const validation = () => {
     let isValid = true;
@@ -49,6 +52,9 @@ const Login = () => {
         const convertedData = JSON.stringify(res.data.userData);
 
         localStorage.setItem('user', convertedData);
+        setTimeout(()=>{
+          navigate("/")
+        },500);
       }
     });
   };
