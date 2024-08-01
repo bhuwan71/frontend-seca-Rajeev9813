@@ -52,9 +52,7 @@ const Login = () => {
         const convertedData = JSON.stringify(res.data.userData);
 
         localStorage.setItem('user', convertedData);
-        setTimeout(()=>{
           navigate("/dashboard")
-        },500);
       }
     });
   };
@@ -192,7 +190,6 @@ const Login = () => {
         `}</style>
       </head>
       
-      <body>
         <div className="wrapper">
           <form onSubmit={handleLogin}>
             <h1>Sign In to My Learning</h1>
@@ -226,7 +223,6 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </body>
     </>
   );
 };

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 
 const Navbar = () => {
-  const [loggedInUser, setLoggedInUser] = useState('')
+  const [loggedInUser, setLoggedInUser] = useState({})
 
   const navigate = useNavigate();
 
@@ -17,12 +17,12 @@ const Navbar = () => {
 
     // Get user data from local storage
     setLoggedInUser(JSON.parse(localStorage.getItem("user")));
-    console.log(loggedInUser)
+    // console.log(loggedInUser)
     // trigger testAPI
     // testApi().then((res) => {
     //   console.log(res); // Test api is working!
     // });
-    // eslint-disable-next-line
+    
   },[]);
   // const user = JSON.parse(localStorage.getItem("user"));
 

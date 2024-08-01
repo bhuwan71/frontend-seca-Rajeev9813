@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 // Task create for login and register
 const App = (()=>{  
 
-  const [loggedInUser, setLoggedInUser] = useState('')
+  const [loggedInUser, setLoggedInUser] = useState({})
 
 
   //isAuthenticated prevent user to redirect to homepage if user try navigating throungh url
@@ -33,15 +33,12 @@ const App = (()=>{
 
   const ProtectedRoute = ({ component }) => {
     const navigate = useNavigate();
-    useEffect(()=>{
-      setLoggedInUser(JSON.parse(localStorage.getItem("user")));
-      // return loggedInUser ? <component /> : (toast.error("Unauthorized access 401") navigate("/login"));
-
-    },[])
-    if(loggedInUser){
+    
+    if(isAuthenticated){
       return component;
     }else{
       <Navigate to={"/login"} />
+      return null;
     }
   
   };

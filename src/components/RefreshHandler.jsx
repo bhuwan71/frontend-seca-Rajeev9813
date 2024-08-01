@@ -11,12 +11,13 @@ const RefreshHandler = ({ setIsAuthenticated }) => {
   
     useEffect(() => {
       const user = localStorage.getItem("user");
-      console.log(user);
+      // console.log(user);
       if (user) {
         setIsAuthenticated(true);
         if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/register') {
           navigate('/', {replace: false});
         }
+        // if(location.pathname == '/dashboard')
       } 
     }, [location.pathname, setIsAuthenticated, navigate]);
   

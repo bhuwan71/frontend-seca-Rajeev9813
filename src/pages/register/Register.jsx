@@ -96,10 +96,7 @@ const Register = () => {
         toast.error(res.data.message);
       } else {
         toast.success(res.data.message);
-
-        setTimeout(()=>{
           navigate("/login")
-        },200)
       }
       
     });

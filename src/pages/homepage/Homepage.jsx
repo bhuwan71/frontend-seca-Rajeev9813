@@ -11,7 +11,6 @@ const Homepage = () => {
 
   // Print Hello!, when page load (Automatic)
   useEffect(() => {
-    console.log("Hello!!!");
 
 
     // trigger testAPI
@@ -359,7 +358,6 @@ const Homepage = () => {
           `}</style>
       </head>
 
-      <body>
         <header>
           {/* <nav className="navbar">
               <div className="navbar_netflix">
@@ -663,7 +661,6 @@ const Homepage = () => {
           </div>
           <p className="copyright-txt">My Learning</p>
         </footer>
-      </body>
     </>
   );
 };

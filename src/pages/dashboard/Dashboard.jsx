@@ -5,21 +5,11 @@ import './Dashboard.css';
 import ProgressBarChart from './ProgressBarChart';
 import TimeSpentChart from './TimeSpentChart';
 import { useNavigate } from 'react-router-dom';
+import { getAllCourse } from '../../apis/Api';
+
 
 const Sidebar = () => {
-    const [loggedInUser, setLoggedInUser] = useState('')
-
-  const navigate = useNavigate();
-
-
-  useEffect(() => {
-
-    // Get user data from local storage
-    setLoggedInUser(JSON.parse(localStorage.getItem("user")));
-
-    // eslint-disable-next-line
-  },[]);
-  
+    
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
@@ -104,20 +94,20 @@ const Dashboard = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const userId = 'user-id-from-context-or-auth'; // Replace with the actual user ID
-
+    const user = (JSON.parse(localStorage.getItem("user"))); // Replace with the actual user ID
+    setUser(user);
     // Fetch user data
-    axios.get(`http://localhost:5000/api/users/${userId}`)
-      .then(response => {
-        setUser(response.data.user);
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
+    // axios.get(`http://localhost:5000/api/users/${userId}`)
+    //   .then(response => {
+    //     setUser(response.data.user);
+    //     console.log(user);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching user data:', error);
+    //   });
 
     // Fetch courses data
-    axios.get('http://localhost:5000/api/courses/get_all_course')
-      .then(response => {
+    getAllCourse().then(response => {
         setCourses(response.data.course);
       })
       .catch(error => {
