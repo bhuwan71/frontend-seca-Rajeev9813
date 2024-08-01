@@ -13,7 +13,7 @@ const Navbar = () => {
 
   // Print Hello!, when page load (Automatic)
   useEffect(() => {
-    console.log("Hello!!!");
+    // console.log("Hello!!!");
 
     // Get user data from local storage
     setLoggedInUser(JSON.parse(localStorage.getItem("user")));
@@ -22,6 +22,7 @@ const Navbar = () => {
     // testApi().then((res) => {
     //   console.log(res); // Test api is working!
     // });
+    // eslint-disable-next-line
   },[]);
   // const user = JSON.parse(localStorage.getItem("user"));
 
