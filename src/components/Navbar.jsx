@@ -54,6 +54,11 @@ const Navbar = () => {
               </a>
             </li>
             <li>
+              <a href="/quizzes" className="text-white hover:text-gray-900">
+                Quizzes
+              </a>
+            </li>
+            <li>
               <a href="/courses" className="text-white hover:text-gray-900">
                 Courses
               </a>

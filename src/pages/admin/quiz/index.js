@@ -14,7 +14,7 @@ const Quizzes = () => {
       setLoading(true);
       const res = await Api.get("/quiz/get_all_quizzes");
       if (res) {
-        setTableData(res?.data?.course);
+        setTableData(res?.data);
       }
     } catch (error) {
       console.error("Error fetching data:", error);

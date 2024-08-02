@@ -52,8 +52,8 @@ const Header = ({ user, toggleDarkMode, isDarkMode }) => {
           <FaMoon className="icon" onClick={toggleDarkMode} />
         )}
         <div className="user-profile">
-          <p>{getGreeting()}, {user.firstName} {user.lastName}</p>
-          <img src={user.profilePic || 'assets/images/profile.png'} alt="User" />
+          {/* <p>{getGreeting()}, {user.firstName} {user.lastName}</p> */}
+          {/* <img src={user.profilePic || 'assets/images/profile.png'} alt="User" /> */}
         </div>
       </div>
     </div>
@@ -168,9 +168,9 @@ const Dashboard = () => {
           <div className="user-details">
             <div className="user-stats">
               <div className="profile-pic">
-                <img src={user.profilePic || 'assets/images/profile.png'} alt="User" />
+                {/* <img src={user.profilePic || 'assets/images/profile.png'} alt="User" /> */}
               </div>
-              <h3>{user.firstName} {user.lastName}</h3>
+              {/* <h3>{user.firstName} {user.lastName}</h3> */}
               <p>Student</p>
               <div className="stats">
                 <p>French: Beginner - {Math.floor(Math.random() * 100)}%</p>

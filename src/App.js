@@ -24,6 +24,7 @@ import UserAction from "./pages/admin/user/Action";
 import AdminProfile from "./pages/admin/profile";
 import Quizzes from "./pages/admin/quiz";
 import QuizAction from "./pages/admin/quiz/Action";
+import QuizComponent from "./pages/homepage/Quiz";
 
 // Task create for login and register
 const App = (()=>{  
@@ -74,7 +75,7 @@ const App = (()=>{
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/user/UserAdd" element={<UserAction />} />
         <Route path="/admin/user/:id" element={<UserAction />} />
-
+        <Route path="/quizzes" element={<QuizComponent />} />
         <Route path="/admin/quizzes" element={<Quizzes />} />
         <Route path="/admin/quizzes/QuizzesAdd" element={<QuizAction />} />
         <Route path="/admin/quizzes/:id" element={<QuizAction />} />

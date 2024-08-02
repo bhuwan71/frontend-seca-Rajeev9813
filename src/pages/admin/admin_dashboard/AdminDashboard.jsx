@@ -1,5 +1,11 @@
 import React from "react";
-import { FaTachometerAlt, FaUserCog, FaChartLine, FaQuestionCircle, FaUsers } from "react-icons/fa";
+import {
+  FaTachometerAlt,
+  FaUserCog,
+  FaChartLine,
+  FaQuestionCircle,
+  FaUsers,
+} from "react-icons/fa";
 import "./Dashboard.css"; // Importing Dashboard.css for any additional internal styling
 import Layout from "./layout";
 
