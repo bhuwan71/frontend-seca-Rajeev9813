@@ -4,7 +4,7 @@ import { FaBell, FaBook, FaCalendarAlt, FaCog, FaComments, FaHome, FaLifeRing, F
 import './Dashboard.css';
 import ProgressBarChart from './ProgressBarChart';
 import TimeSpentChart from './TimeSpentChart';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getAllCourse } from '../../apis/Api';
 
 
@@ -51,10 +51,12 @@ const Header = ({ user, toggleDarkMode, isDarkMode }) => {
         ) : (
           <FaMoon className="icon" onClick={toggleDarkMode} />
         )}
+        <Link to="profile">
         <div className="user-profile">
           <p>{getGreeting()}, {user.firstName} {user.lastName}</p>
           <img src={user.profilePic || 'assets/images/profile.png'} alt="User" />
         </div>
+        </Link>
       </div>
     </div>
   );
