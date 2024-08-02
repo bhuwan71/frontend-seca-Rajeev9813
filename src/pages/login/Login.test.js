@@ -52,6 +52,7 @@ describe("Login Component Test", () => {
 
     //we have done all the required setup above
 
+    // eslint-disable-next-line testing-library/await-async-utils
     waitFor(() => {
         expect(loginUserApi).toHaveBeenNthCalledWith({
             email: "test@gmail.com",

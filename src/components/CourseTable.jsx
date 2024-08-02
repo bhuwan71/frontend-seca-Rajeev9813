@@ -31,7 +31,7 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
 
   const handleDelete = async (rowData) => {
     try {
-      const response = await Api.delete(`course/delete_course/${rowData.id}`);
+      const response = await Api.delete(`course/delete_course/${rowData._id}`);
       if (response) {
         fetchData(currentPage);
         toast.success("Course Deleted Successfully", {

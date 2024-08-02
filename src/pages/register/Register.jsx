@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUserApi } from "../../apis/Api";
 import Navbar from "../../components/Navbar";
+import {Link, useNavigate} from "react-router-dom"
 
 const Register = () => {
   // State for 5 Fields
@@ -17,6 +18,8 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const navigate = useNavigate();
 
   // Handle input changes and reset error messages
   const handleFirstname = (e) => {
@@ -93,33 +96,35 @@ const Register = () => {
         toast.error(res.data.message);
       } else {
         toast.success(res.data.message);
+          navigate("/login")
       }
+      
     });
   };
   return (
     <>
-      <div
+      <div 
+      className=" md:w-full   md:flex md:justify-center md:items-center"
         style={{
           backgroundImage:
-            "url(https://removal.ai/wp-content/uploads/2021/09/black-background-04-coolbackgrounds.png)",
+            "url(../../assets/images/bg.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           color: "white",
         }}
+        
+        
       >
         <form
+                  className="w-[20rem] md:w-1/3 mx-auto pt-20 md:pt-0"
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.6)",
-            padding: "20px",
+            padding: "50px",
             borderRadius: "10px",
-            width: "400px",
           }}
         >
-          <h2 style={{ textAlign: "center", fontWeight: "bold" }}>Register</h2>
+          <h2 style={{ textAlign: "center", fontWeight: "bold" }} className="text-3xl text-green-500">Register</h2>
           <label style={{ fontWeight: "bold" }}>Firstname</label>
           <input
             onChange={handleFirstname}
@@ -136,7 +141,7 @@ const Register = () => {
             onChange={handleLastname}
             value={lastName}
             type="text"
-            className="form-control"
+            className="form-control w-full"
             placeholder="Enter your lastname"
             style={{ marginBottom: "10px" }}
           />
@@ -179,55 +184,57 @@ const Register = () => {
 
           <button
             onClick={handleSubmit}
-            className="btn btn-dark mt-2 w-100"
+            className="btn btn-dark mt-2 w-100 bg-orange-400"
             style={{ fontWeight: "bold" }}
           >
             Create an Account!
           </button>
+
+          <p className="mt-4 text-center">Already Existing User ? <Link to={"/login"} className="text-yellow-300">Sign In</Link></p>
         </form>
       </div>
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>
           Questions? Call <a href="">9813420243</a>
         </p>
         <div className="footer-cols">
           <ul>
             <li>
-              <a href="">FAQ</a>
+              <a href="#">FAQ</a>
             </li>
             <li>
-              <a href="">Investor Relations</a>
+              <a href="#">Investor Relations</a>
             </li>
             <li>
-              <a href="">Privacy</a>
+              <a href="#">Privacy</a>
             </li>
             <li>
-              <a href="">Speed Test</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">Help Centre</a>
-            </li>
-            <li>
-              <a href="">Jobs</a>
-            </li>
-            <li>
-              <a href="">Cookie Preferences</a>
-            </li>
-            <li>
-              <a href="">Legal Notices</a>
+              <a href="#">Speed Test</a>
             </li>
           </ul>
           <ul>
             <li>
-              <a href="">Account</a>
+              <a href="#">Help Centre</a>
             </li>
             <li>
-              <a href="">Ways to Watch</a>
+              <a href="#">Jobs</a>
             </li>
             <li>
-              <a href="">Corporate Information</a>
+              <a href="#">Cookie Preferences</a>
+            </li>
+            <li>
+              <a href="#">Legal Notices</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="#">Account</a>
+            </li>
+            <li>
+              <a href="#">Ways to Watch</a>
+            </li>
+            <li>
+              <a href="#">Corporate Information</a>
             </li>
             <li>
               <a href="">Only on Netflix</a>
@@ -589,7 +596,7 @@ const Register = () => {
               text-decoration: none;
               color: white;
             }
-          `}</style>
+          `}</style> */}
     </>
   );
 };

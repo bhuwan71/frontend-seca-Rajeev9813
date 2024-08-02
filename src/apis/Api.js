@@ -22,6 +22,8 @@ export const registerUserApi = (data) => Api.post("/api/user/create", data);
 // login api
 export const loginUserApi = (data) => Api.post("/api/user/login", data);
 
+// get all courses
+export const getAllCourse = () => Api.get("/api/course/get_all_course", config);
 
 // http://localhost:5000/test
 export default Api;
