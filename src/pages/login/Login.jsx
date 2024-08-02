@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { loginUserApi } from '../../apis/Api';
 import Navbar from '../../components/Navbar';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -10,6 +11,8 @@ const Login = () => {
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+
+  const navigate= useNavigate();
 
   const validation = () => {
     let isValid = true;
@@ -49,6 +52,7 @@ const Login = () => {
         const convertedData = JSON.stringify(res.data.userData);
 
         localStorage.setItem('user', convertedData);
+          navigate("/dashboard")
       }
     });
   };
@@ -186,7 +190,6 @@ const Login = () => {
         `}</style>
       </head>
       
-      <body>
         <div className="wrapper">
           <form onSubmit={handleLogin}>
             <h1>Sign In to My Learning</h1>
@@ -213,14 +216,13 @@ const Login = () => {
             <button type="submit" className="btn">Sign In</button>
             <div className="remember-forgot">
               <label><input type="checkbox" /> Remember Me</label>
-              <a href="#">Need help?</a>
+              <a href="/">Need help?</a>
             </div>
             <div className="register-link">
-              <p>New to My Learning? <a href="/register">Sign up now</a></p>
+              <p>New to My Learning? <Link to="/register">Sign up now</Link></p>
             </div>
           </form>
         </div>
-      </body>
     </>
   );
 };

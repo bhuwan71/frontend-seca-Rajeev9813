@@ -6,15 +6,18 @@ import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 
 const Homepage = () => {
+
+
+
   // Print Hello!, when page load (Automatic)
   useEffect(() => {
-    console.log("Hello!!!");
+
 
     // trigger testAPI
     // testApi().then((res) => {
     //   console.log(res); // Test api is working!
     // });
-  });
+  },[]);
 
   return (
     <>
@@ -355,7 +358,6 @@ const Homepage = () => {
           `}</style>
       </head>
 
-      <body>
         <header>
           {/* <nav className="navbar">
               <div className="navbar_netflix">
@@ -659,7 +661,6 @@ const Homepage = () => {
           </div>
           <p className="copyright-txt">My Learning</p>
         </footer>
-      </body>
     </>
   );
 };

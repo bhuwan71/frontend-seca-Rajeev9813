@@ -1,65 +1,36 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import DropdownUser from "./DropdownUser";
 
 const Header = (props) => {
   return (
-    <header className="sticky top-0 z-999 flex w-full bg-[#F5F5F5] drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
-      <div className="flex flex-grow items-center justify-between py-2 px-4 shadow-2 md:px-6 2xl:px-11">
-        <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
-          {/* <!-- Hamburger Toggle BTN --> */}
+    <header className="sticky top-0 z-50 w-full bg-white shadow-lg dark:bg-gray-800">
+      <div className="flex items-center justify-between py-4 px-6 md:px-8">
+        {/* Logo and Hamburger Toggle */}
+        <div className="flex items-center gap-4">
+          {/* Hamburger Toggle BTN */}
           <button
             aria-controls="sidebar"
             onClick={(e) => {
               e.stopPropagation();
               props.setSidebarOpen(!props.sidebarOpen);
             }}
-            className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+            className="lg:hidden text-gray-800 dark:text-white focus:outline-none"
           >
-            <span className="relative block h-5.5 w-5.5 cursor-pointer">
-              <span className="du-block absolute right-0 h-full w-full">
-                <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!w-full delay-300"
-                  }`}
-                ></span>
-                <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "delay-400 !w-full"
-                  }`}
-                ></span>
-                <span
-                  className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!w-full delay-500"
-                  }`}
-                ></span>
-              </span>
-              <span className="absolute right-0 h-full w-full rotate-45">
-                <span
-                  className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!h-0 !delay-[0]"
-                  }`}
-                ></span>
-                <span
-                  className={`delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!h-0 !delay-200"
-                  }`}
-                ></span>
-              </span>
-            </span>
+            {props.sidebarOpen ? (
+              <FaTimes className="text-2xl" />
+            ) : (
+              <FaBars className="text-2xl" />
+            )}
           </button>
-          {/* <!-- Hamburger Toggle BTN --> */}
-          <Link className="block flex-shrink-0 lg:hidden" to="/">
-            {/* <img src={Logo} alt="Logo" /> */}
-            JOB SHOP
-          </Link>
         </div>
-
-        <div>{/* You can add additional content here if needed */}</div>
-
-        <div className="flex items-center gap-3 2xsm:gap-7">
-          {/* <!-- User Area --> */}
+        {/* User Area */}
+        <div className="flex items-center gap-4">
           <DropdownUser />
-          {/* <!-- User Area --> */}
+          <button className="hidden lg:flex items-center text-gray-800 dark:text-white focus:outline-none">
+            <FaUserCircle className="text-2xl" />
+          </button>
         </div>
       </div>
     </header>
