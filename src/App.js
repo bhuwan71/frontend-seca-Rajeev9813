@@ -1,4 +1,10 @@
-import { Navigate, Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import "./App.css";
 // import Navbar from './components/Navbar';
 import Homepage from "./pages/homepage/Homepage";
@@ -9,7 +15,6 @@ import Register from "./pages/register/Register";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminDashboard from "./pages/admin/admin_dashboard/AdminDashboard";
-import Dashboard from "./pages/dashboard/Dashboard";
 import Profile from "./pages/profile/Profile";
 import AdminRoutes from "./protected_routes/AdminRoutes";
 import RefreshHandler from "./components/RefreshHandler";
@@ -25,37 +30,33 @@ import AdminProfile from "./pages/admin/profile";
 import Quizzes from "./pages/admin/quiz";
 import QuizAction from "./pages/admin/quiz/Action";
 import QuizComponent from "./pages/homepage/Quiz";
+import CourseList from "./pages/homepage/Course";
+import AboutUs from "./pages/homepage/AboutUs";
+import CareerPage from "./pages/homepage/Career";
 
 // Task create for login and register
-const App = (()=>{  
-
-  const [loggedInUser, setLoggedInUser] = useState({})
-
+const App = () => {
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   //isAuthenticated prevent user to redirect to homepage if user try navigating throungh url
   //Eg- if user try to navigate using url localhost:3000/login then it will redirect to homepage if token or use is there in local storage
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const PrivateRoute = ({element}) =>{
+  const PrivateRoute = ({ element }) => {
     return isAuthenticated ? element : element;
   };
 
   const ProtectedRoute = ({ component }) => {
     const navigate = useNavigate();
-    
-    if(isAuthenticated){
+
+    if (isAuthenticated) {
       return component;
-    }else{
-      <Navigate to={"/login"} />
+    } else {
+      <Navigate to={"/login"} />;
       return null;
     }
-  
   };
-  
-
-  
 
   return (
-
     <Router>
       {/* <Navbar/> */}
       <ToastContainer />
@@ -68,7 +69,12 @@ const App = (()=>{
         {/* Admin Routes */}
         {/* <Route element={<AdminRoutes/>}> */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/career" element={<CareerPage />} />
+
         <Route path="/admin/profile" element={<AdminProfile />} />
+        <Route path="/courses" element={<CourseList />} />
+        <Route path="/about-us" element={<AboutUs />} />
+
         <Route path="/admin/courses" element={<Course />} />
         <Route path="/admin/courses/CourseAdd" element={<CourseAction />} />
         <Route path="/admin/course/:id" element={<CourseAction />} />
@@ -83,11 +89,13 @@ const App = (()=>{
         {/* </Route> */}
 
         {/* User Routes */}
-          <Route path="/profile" element={<ProtectedRoute component={<Profile />} />} />
-          <Route path="/dashboard" element={<ProtectedRoute component={<Dashboard />} />} />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute component={<Profile />} />}
+        />
       </Routes>
     </Router>
   );
-});
+};
 
 export default App;
