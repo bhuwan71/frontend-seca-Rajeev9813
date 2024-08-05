@@ -1,14 +1,12 @@
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useState, useEffect } from "react";
 import { Spin, Modal } from "antd";
-import { useState, useEffect } from "react";
-import debounce from "lodash/debounce";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import debounce from "lodash/debounce";
 import Api from "../apis/Api";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const { confirm } = Modal;
@@ -20,6 +18,19 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState("");
   const navigate = useNavigate();
+
+  const imageUrls = [
+    "https://i.pinimg.com/originals/c9/1f/ae/c91faed3dc651d2f458681a89563e520.jpg",
+    "https://c4.wallpaperflare.com/wallpaper/767/594/322/books-library-bokeh-depth-of-field-wallpaper-preview.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGjR2YVz86hs0MMKNBUWw9eJp1GYo2AximJg&s",
+    "https://img.freepik.com/premium-photo/books-growing-trees-solid-color-background-4k-ultra-hd_964851-140046.jpg",
+    "https://i1.pickpik.com/photos/543/108/848/books-read-literature-paper-thumb.jpg",
+    "https://static.vecteezy.com/system/resources/thumbnails/036/398/415/original/stacked-books-in-the-forest-the-concept-of-learning-reading-and-knowledge-close-up-blurred-background-4k-video.jpg"
+  ];
+
+  const getRandomImage = () => {
+    return imageUrls[Math.floor(Math.random() * imageUrls.length)];
+  };
 
   const debouncedSearch = debounce((term) => {
     setSearchTerm(term);
@@ -79,7 +90,6 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
   const handleEdit = (rowData) => {
     navigate(`/admin/course/${rowData._id}`);
   };
-  
 
   const handleImageClick = (url) => {
     setModalImageUrl(url);
@@ -165,8 +175,8 @@ const CourseTable = ({ heading, tableData, loading, fetchData }) => {
                       <td className="px-6 py-2 whitespace-nowrap">
                         <img
                           className="w-10 h-10 rounded-full object-cover"
-                          src={rowData?.courseImage}
-                          onClick={() => handleImageClick(rowData?.courseImage)}
+                          src={getRandomImage()}
+                          onClick={() => handleImageClick(getRandomImage())}
                         />
                       </td>
                       <td className="px-6 py-4">{rowData?.courseName}</td>

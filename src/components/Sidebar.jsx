@@ -6,9 +6,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { MdWorkHistory } from "react-icons/md";
 import Logo from "../img/logo.png";
-import { MdOutlineCategory } from "react-icons/md";
 import { FaSlidersH } from "react-icons/fa";
-
+import { GrUserManager } from "react-icons/gr";
+import { RiUserAddLine } from "react-icons/ri";
+import { SiGoogleclassroom } from "react-icons/si";
+import { FaQuestion } from "react-icons/fa";
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
@@ -128,114 +130,39 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   Courses
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink
-                  to="/admin/category"
-                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("/admin/category")
-                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
-                      : ""
-                  }`}
-                >
-                  <MdOutlineCategory />
-                  Category
-                </NavLink>
-              </li> */}
               <li>
                 <NavLink
                   to="/admin/users"
                   className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                    pathname.startsWith("/admin/category")
+                    pathname.startsWith("/admin/users")
                       ? "bg-[#EDE7F6]  text-[#5E35B1]"
                       : ""
                   }`}
                 >
-                  <MdOutlineCategory />
+                  <RiUserAddLine />
                   Users
                 </NavLink>
               </li>
-              {/* <SidebarLinkGroup
-                activeCondition={
-                  pathname === "admin/users" || pathname.includes("users")
-                }
-              >
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                          pathname.includes("chart") &&
-                          "bg-black text-white dark:bg-meta-4"
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <IoIosPeople size={24} />
-                        Users
-                        <svg
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open && "rotate-180"
-                          }`}
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                            fill=""
-                          />
-                        </svg>
-                      </NavLink>
-                      <div
-                        className={`transition-max-height ${
-                          !open ? "open" : ""
-                        }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li>
-                            <NavLink
-                              to="/users/teacher"
-                              className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                                pathname.startsWith("/users/employee-list")
-                                  ? "bg-[#EDE7F6]  text-[#5E35B1]"
-                                  : ""
-                              }`}
-                            >
-                              Student
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/users/student"
-                              className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
-                                pathname.startsWith("/users/employee-list")
-                                  ? "bg-[#EDE7F6]  text-[#5E35B1]"
-                                  : ""
-                              }`}
-                            >
-                              Student
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup> */}
+              <li>
+                <NavLink
+                  to="/admin/faq"
+                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
+                    pathname.startsWith("/admin/faq")
+                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
+                      : ""
+                  }`}
+                >
+                  <FaQuestion />
+                  FAQ
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div>
             <hr className="border-none bg-[#EEF2F6] h-px mt-2 mb-2" />
-            <h3 className="mb-2 text-white text-sm font-semibold text-black">OTHERS</h3>
+            <h3 className="mb-2 text-white text-sm font-semibold text-black">
+              OTHERS
+            </h3>
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <NavLink
@@ -248,6 +175,32 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 >
                   <FaSlidersH size={24} />
                   Quizzes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/admin/staff"
+                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
+                    pathname.startsWith("/admin/assignment")
+                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
+                      : ""
+                  }`}
+                >
+                  <GrUserManager size={24} />
+                  Staff Management
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/admin/classSchedule"
+                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
+                    pathname.startsWith("/admin/classSchedule")
+                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
+                      : ""
+                  }`}
+                >
+                  <SiGoogleclassroom size={24} />
+                  Class Schedule
                 </NavLink>
               </li>
             </ul>
