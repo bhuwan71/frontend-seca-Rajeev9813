@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black shadow-lg z-10 fixed w-full">
+    <nav className="bg-black shadow-lg z-50 fixed w-full">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center ">
           <div className="flex items-center">
@@ -51,6 +51,11 @@ const Navbar = () => {
             <li>
               <a href="/" className="text-white hover:text-gray-900">
                 Home
+              </a>
+            </li>
+            <li>
+              <a href="/quizzes" className="text-white hover:text-gray-900">
+                Quizzes
               </a>
             </li>
             <li>
