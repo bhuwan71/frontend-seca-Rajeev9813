@@ -109,12 +109,11 @@ const Homepage = () => {
               margin-top: 200px;
             }
             .hero_title {
-              font-weight: 600;
+              font-weight: 800;
               font-size: 3rem;
             }
             .hero_subtitle,
             .hero-description {
-              font-weight: 400;
               font-size: 1.3rem;
             }
             .email {
@@ -385,23 +384,16 @@ const Homepage = () => {
               <img
                 src="assets/images/bg.png"
                 alt="backgroundimage"
-                className="hero_bg_img"
+                className="w-full h-screen bg-center bg-cover"
               />
             </div>
-            <div>
-              <div className="hero_bg_overlay"></div>
-              <div className="hero_card">
-                <h1 className="hero_title">
-                  Unlimited movies, TV shows and more
-                </h1>
-                <h2 className="hero_subtitle">
-                  Watch anywhere. Cancel anytime.
-                </h2>
+            <div className="">
+              {/* <div className="hero_bg_overlay"> */}
+              <div className="absolute md:top-[40%] left-1/4 right-1/4 text-center flex flex-col gap-3 text-black ">
+                <h1 className="hero_title text-4xl font-extrabold text-purple">Discover the World Through Language!</h1>
+                <h2 className="text-3xl font-bold">“Learn, Connect, and Grow”</h2>
                 <p className="hero_description">
-                  <nobr>
-                    Ready to learn and explore? Enter your email to create your
-                    membership.
-                  </nobr>
+                  <p className="text-lg"> “Join our vibrant community and master new languages with engaging lessons. Explore cultures, make friends, and unlock new opportunities. Start your journey today!”</p>
                   <br />
                   <br />
                   <nobr>
@@ -410,13 +402,14 @@ const Homepage = () => {
                       placeholder="Email Address"
                       className="email"
                     />
-                    <button className="get_started" href="/register">
+                    <button className="get_started text-white" href="/register">
                       Get Started{" "}
                     </button>
                   </nobr>
                 </p>
               </div>
-            </div>
+              </div>
+            {/* </div> */}
           </section>
           <section className="style-cards">
             <div className="card-1">

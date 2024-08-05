@@ -3,29 +3,26 @@ import { FaUserAlt, FaUserPlus } from "react-icons/fa"; // Import icons
 import "./Navbar.css"; // If you still have some custom styles
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "./utils/userSlice";
 
 
 const Navbar = () => {
-  const [loggedInUser, setLoggedInUser] = useState({})
-
+  const user = useSelector(store => store.user.userData)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
-  // Print Hello!, when page load (Automatic)
   useEffect(() => {
-    // console.log("Hello!!!");
-
     // Get user data from local storage
-    setLoggedInUser(JSON.parse(localStorage.getItem("user")));
-    // console.log(loggedInUser)
-    // trigger testAPI
-    // testApi().then((res) => {
-    //   console.log(res); // Test api is working!
-    // });
-    
-  },[]);
-  // const user = JSON.parse(localStorage.getItem("user"));
+    fetchUserData();
 
+  },[]);
+
+  const fetchUserData = ()=>{
+    dispatch(setUserData(JSON.parse(localStorage.getItem("user"))));
+
+  }
   // Logout function
   const handleLogout = () => {
     localStorage.clear();
@@ -37,42 +34,42 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black shadow-lg z-10 fixed w-full">
+    <nav className="bg-blue-50 shadow-lg  z-10 fixed w-full">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center ">
           <div className="flex items-center">
             <img
               src="assets/images/logo.png"
               alt="Logo"
-              className="h-[100px] w-[200px]"
+              className="h-[70px] w-[150px]"
             />
           </div>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-4 text-xl font-semibold ">
             <li>
-              <a href="/" className="text-white hover:text-gray-900">
-                Home
+              <a href="/dashboard" className="text-black hover:text-gray-900">
+                Dashboard
               </a>
             </li>
             <li>
-              <a href="/courses" className="text-white hover:text-gray-900">
+              <a href="/courses" className="text-black hover:text-gray-900">
                 Courses
               </a>
             </li>
             <li>
-              <a href="/about-us" className="text-white hover:text-gray-900">
+              <a href="/about-us" className="text-black hover:text-gray-900">
                 About Us
               </a>
             </li>
             <li>
-              <a href="/career" className="text-white hover:text-gray-900">
+              <a href="/career" className="text-black hover:text-gray-900">
                 Career
               </a>
             </li>
           </ul>
-          {loggedInUser ? (
-              <Link to={"/profile"}><div className="flex  justify-center items-center gap-4">
-                <div className="flex"><FaUserAlt className="mr-2" />
-                {loggedInUser?.firstName}</div>
+          {user ? (
+              <Link to={"/profile"}><div className="flex  justify-center items-center gap-4 ">
+                <div className="flex text-black"><FaUserAlt className="mr-2 " />
+                {user?.firstName}</div>
 
                 <button className="p-2 px-4 bg-red-500 text-white rounded-lg" onClick={handleLogout}>Logout</button>
                 
@@ -89,14 +86,14 @@ const Navbar = () => {
             </select> */}
             <a
               href="/login"
-              className="flex items-center bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition"
+              className="flex items-center bg-blue-600 text-black px-3 py-2 rounded-md hover:bg-blue-700 transition"
             >
               <FaUserAlt className="mr-2" />
               Log in
             </a>
             <a
               href="/register"
-              className="flex items-center bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition"
+              className="flex items-center bg-green-600 text-black px-3 py-2 rounded-md hover:bg-green-700 transition"
             >
               <FaUserPlus className="mr-2" />
               Sign up

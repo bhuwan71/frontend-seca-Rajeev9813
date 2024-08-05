@@ -24,6 +24,9 @@ import UserAction from "./pages/admin/user/Action";
 import AdminProfile from "./pages/admin/profile";
 import Quizzes from "./pages/admin/quiz";
 import QuizAction from "./pages/admin/quiz/Action";
+import RequestForm from "./pages/dashboard/RequestForm";
+import store from "./components/utils/store";
+import {Provider} from "react-redux"
 
 // Task create for login and register
 const App = (()=>{  
@@ -54,7 +57,7 @@ const App = (()=>{
   
 
   return (
-
+    <Provider store={store}>
     <Router>
       {/* <Navbar/> */}
       <ToastContainer />
@@ -84,8 +87,11 @@ const App = (()=>{
         {/* User Routes */}
           <Route path="/profile" element={<ProtectedRoute component={<Profile />} />} />
           <Route path="/dashboard" element={<ProtectedRoute component={<Dashboard />} />} />
+          <Route path="/dashboard/request" element={<RequestForm />} />
+
       </Routes>
     </Router>
+    </Provider>
   );
 });
 
