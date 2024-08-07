@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 // import Navbar from "../../components/Navbar";
 // import { testApi } from "../../apis/Api";
 import Navbar from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
+import  Footer  from "../../components/Footer";
 
 const Homepage = () => {
   // Print Hello!, when page load (Automatic)
@@ -593,7 +593,7 @@ const Homepage = () => {
           </nobr>
         </p>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

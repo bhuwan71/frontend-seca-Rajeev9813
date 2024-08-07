@@ -34,8 +34,9 @@ import CourseList from "./pages/homepage/Course";
 import AboutUs from "./pages/homepage/AboutUs";
 import CareerPage from "./pages/homepage/Career";
 import StaffDetails from "./pages/admin/staff";
-import ClassSchedule from "./pages/classSchedule";
+import ClassSchedule from "./pages/admin/classSchedule";
 import FAQ from "./pages/admin/faq";
+import CourseDetails from "./pages/homepage/CourseDetails";
 
 // Task create for login and register
 const App = () => {
@@ -91,6 +92,8 @@ const App = () => {
         <Route path="/admin/ticket" element={<Quizzes />} />
         <Route path="/admin/staff" element={<StaffDetails />} />
         <Route path="/admin/classSchedule" element={<ClassSchedule />} />
+        <Route path="/admin/classSchedule/:id" element={<CourseDetails />} />
+
         <Route path="/admin/faq" element={<FAQ />} />
 
         {/* </Route> */}

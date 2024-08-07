@@ -4,7 +4,6 @@ import "./Navbar.css"; // If you still have some custom styles
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-
 const Navbar = () => {
   const [loggedInUser, setLoggedInUser] = useState({})
 

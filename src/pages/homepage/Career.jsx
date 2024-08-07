@@ -1,7 +1,6 @@
 import React from "react";
-import { FaBriefcase, FaPaperPlane, FaUser } from "react-icons/fa";
 import Navbar from "../../components/Navbar";
-// import { Footer } from "../../components/Footer";
+import  Footer  from "../../components/Footer";
 
 const CareerPage = () => {
   return (
@@ -40,7 +39,7 @@ const CareerPage = () => {
           />
         </div>
       </section>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

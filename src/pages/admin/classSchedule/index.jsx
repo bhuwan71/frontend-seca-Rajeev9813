@@ -1,6 +1,6 @@
 import React from "react";
 import { FaChalkboardTeacher, FaClock, FaGlobe } from "react-icons/fa";
-import Layout from "../admin/admin_dashboard/layout";
+import Layout from "../admin_dashboard/layout";
 
 const classSchedule = [
   {
