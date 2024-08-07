@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import Navbar from "../../components/Navbar";
 import Api from "../../apis/Api";
+import Footer from "../../components/Footer";
 const QuizItem = ({ quiz }) => {
   const [selectedAnswer, setSelectedAnswer] = useState({});
   const [showAnswer, setShowAnswer] = useState(false);
@@ -17,7 +18,6 @@ const QuizItem = ({ quiz }) => {
 
   const handleShowAnswer = () => {
     setShowAnswer(!showAnswer); // Toggle between showing and hiding answers
-    setSelectedAnswer({}); // Reset selected answers when showing answers
   };
 
   const calculateScore = () => {
@@ -38,7 +38,7 @@ const QuizItem = ({ quiz }) => {
         {quiz?.quizName}
       </h2>
       <p className="mb-6 text-gray-600">{quiz.quizDescription}</p>
-      {quiz?.questions.map((question, qIndex) => (
+      {quiz?.questions?.map((question, qIndex) => (
         <div key={question._id} className="mb-6">
           <h3 className="text-lg font-medium mb-2 text-gray-700">
             {question.questionText}
@@ -47,28 +47,30 @@ const QuizItem = ({ quiz }) => {
             {question?.options?.map((option, oIndex) => {
               const isCorrect = oIndex === question.correctAnswer;
               const isSelected = selectedAnswer[qIndex] === oIndex;
-              const optionClass = showAnswer
-                ? isCorrect
-                  ? "bg-green-100 text-green-800 border-green-400"
-                  : isSelected
-                  ? "bg-red-100 text-red-800 border-red-400"
-                  : "bg-gray-200 text-gray-700"
-                : "bg-gray-100 text-gray-700";
+              let optionClass = "bg-gray-100 text-gray-700";
 
-              // Highlight selected option with blue border
-              const borderClass =
-                isSelected && !showAnswer ? "border-1 bg-blue-100" : "";
+              if (showAnswer) {
+                if (isSelected) {
+                  optionClass = isCorrect
+                    ? "bg-green-100 text-green-800 border-green-400"
+                    : "bg-red-100 text-red-800 border-red-400";
+                } else if (isCorrect) {
+                  optionClass = "bg-green-100 text-green-800 border-green-400";
+                }
+              } else if (isSelected) {
+                optionClass = "bg-blue-600 text-white border-white-400";
+              }
 
               // Add hover and click effects
               const hoverClass = !showAnswer
-                ? "hover:bg-gray-300  active:scale-95 transition-transform"
+                ? "hover:bg-gray-300 active:scale-95 transition-transform"
                 : "";
 
               return (
                 <div
                   key={oIndex}
                   onClick={() => handleOptionClick(qIndex, oIndex)}
-                  className={`px-4 py-2 border rounded-lg cursor-pointer transition-all ${optionClass} ${borderClass} ${hoverClass}`}
+                  className={`px-4 py-2 border rounded-lg cursor-pointer transition-all ${optionClass} ${hoverClass}`}
                 >
                   {option}
                 </div>
@@ -131,6 +133,7 @@ const Quizzes = () => {
           <QuizItem key={quiz._id} quiz={quiz} />
         ))}
       </div>
+      <Footer />
     </>
   );
 };

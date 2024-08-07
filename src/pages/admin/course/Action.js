@@ -224,7 +224,7 @@ const CourseAction = () => {
                 )}
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-5 px-2">
+            {/* <div className="grid grid-cols-2 gap-5 px-2">
               <div className="mb-5.5">
                 <label
                   className="mb-3 p-3 block text-sm font-medium text-black dark:text-white"
@@ -255,7 +255,7 @@ const CourseAction = () => {
                   />
                 </Modal>
               </div>
-            </div>
+            </div> */}
             <div className="flex justify-end gap-4.5">
               <button
                 className="flex text-white justify-center rounded bg-black py-2 px-6 font-medium text-gray hover:shadow-1"
