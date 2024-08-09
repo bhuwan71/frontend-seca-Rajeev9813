@@ -1,14 +1,13 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserAlt, FaUserPlus } from "react-icons/fa"; // Import icons
 import "./Navbar.css"; // If you still have some custom styles
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const [loggedInUser, setLoggedInUser] = useState({})
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   const navigate = useNavigate();
-
 
   // Print Hello!, when page load (Automatic)
   useEffect(() => {
@@ -21,8 +20,7 @@ const Navbar = () => {
     // testApi().then((res) => {
     //   console.log(res); // Test api is working!
     // });
-    
-  },[]);
+  }, []);
   // const user = JSON.parse(localStorage.getItem("user"));
 
   // Logout function
@@ -30,22 +28,21 @@ const Navbar = () => {
     localStorage.clear();
     toast.success("User Loggedout");
     // window.location.href = "/login";
-    setTimeout(()=>{
-      navigate("/login")
-    },500)
+    setTimeout(() => {
+      navigate("/login");
+    }, 500);
   };
 
   return (
     <nav className="bg-black shadow-lg z-50 fixed w-full">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center ">
-          <div className="flex items-center">
             <img
               src="assets/images/logo.png"
               alt="Logo"
-              className="h-[100px] w-[200px]"
+              className="h-[70px] w-full max-w-[200px] md:max-w-[150px] lg:max-w-[100px]"
             />
-          </div>
+
           <ul className="flex space-x-4">
             <li>
               <a href="/" className="text-white hover:text-gray-900">
@@ -74,38 +71,45 @@ const Navbar = () => {
             </li>
           </ul>
           {loggedInUser ? (
-              <Link to={"/profile"}><div className="flex  justify-center items-center gap-4">
-                <div className="flex"><FaUserAlt className="mr-2" />
-                {loggedInUser?.firstName}</div>
+            <Link to={"/profile"}>
+              <div className="flex  justify-center items-center gap-4">
+                <div className="flex">
+                  <FaUserAlt className="mr-2" />
+                  {loggedInUser?.firstName}
+                </div>
 
-                <button className="p-2 px-4 bg-red-500 text-white rounded-lg" onClick={handleLogout}>Logout</button>
-                
+                <button
+                  className="p-2 px-4 bg-red-500 text-white rounded-lg"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </div>
-              </Link>
-          ):
-          (
-          <div className="flex items-center space-x-4">
-            {/* <select className="border border-gray-300 rounded-lg py-1 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            </Link>
+          ) : (
+            <div className="flex items-center space-x-4">
+              {/* <select className="border border-gray-300 rounded-lg py-1 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
               <option value="en">English (United States)</option>
               <option value="fr">Français (France)</option>
               <option value="es">Español (España)</option>
               <option value="de">Deutsch (Deutschland)</option>
             </select> */}
-            <a
-              href="/login"
-              className="flex items-center bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition"
-            >
-              <FaUserAlt className="mr-2" />
-              Log in
-            </a>
-            <a
-              href="/register"
-              className="flex items-center bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition"
-            >
-              <FaUserPlus className="mr-2" />
-              Sign up
-            </a>
-          </div>)}
+              <a
+                href="/login"
+                className="flex items-center bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700 transition"
+              >
+                <FaUserAlt className="mr-2" />
+                Log in
+              </a>
+              <a
+                href="/register"
+                className="flex items-center bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-700 transition"
+              >
+                <FaUserPlus className="mr-2" />
+                Sign up
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </nav>
