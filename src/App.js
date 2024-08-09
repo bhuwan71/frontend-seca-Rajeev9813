@@ -29,6 +29,7 @@ import UserAction from "./pages/admin/user/Action";
 import AdminProfile from "./pages/admin/profile";
 import Quizzes from "./pages/admin/quiz";
 import QuizAction from "./pages/admin/quiz/Action";
+<<<<<<< HEAD
 import QuizComponent from "./pages/homepage/Quiz";
 import CourseList from "./pages/homepage/Course";
 import AboutUs from "./pages/homepage/AboutUs";
@@ -37,6 +38,11 @@ import StaffDetails from "./pages/admin/staff";
 import ClassSchedule from "./pages/admin/classSchedule";
 import FAQ from "./pages/admin/faq";
 import CourseDetails from "./pages/homepage/CourseDetails";
+=======
+import RequestForm from "./pages/dashboard/RequestForm";
+import store from "./components/utils/store";
+import {Provider} from "react-redux"
+>>>>>>> 4818a34177d275dad19ef3f644b53320f14a8295
 
 // Task create for login and register
 const App = () => {
@@ -61,6 +67,10 @@ const App = () => {
   };
 
   return (
+<<<<<<< HEAD
+=======
+    <Provider store={store}>
+>>>>>>> 4818a34177d275dad19ef3f644b53320f14a8295
     <Router>
       {/* <Navbar/> */}
       <ToastContainer />
@@ -98,12 +108,20 @@ const App = () => {
 
         {/* </Route> */}
         {/* User Routes */}
+<<<<<<< HEAD
         <Route
           path="/profile"
           element={<ProtectedRoute component={<Profile />} />}
         />
+=======
+          <Route path="/profile" element={<ProtectedRoute component={<Profile />} />} />
+          <Route path="/dashboard" element={<ProtectedRoute component={<Dashboard />} />} />
+          <Route path="/dashboard/request" element={<RequestForm />} />
+
+>>>>>>> 4818a34177d275dad19ef3f644b53320f14a8295
       </Routes>
     </Router>
+    </Provider>
   );
 };
 

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { FaBell, FaBook, FaCalendarAlt, FaCog, FaComments, FaHome, FaLifeRing, FaMoon, FaQuestionCircle, FaSignOutAlt, FaSun } from 'react-icons/fa';
 import './Dashboard.css';
 import ProgressBarChart from './ProgressBarChart';
 import TimeSpentChart from './TimeSpentChart';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllCourse } from '../../apis/Api';
+<<<<<<< HEAD
 
 
 const Sidebar = () => {
@@ -61,6 +61,19 @@ const Header = ({ user, toggleDarkMode, isDarkMode }) => {
     </div>
   );
 };
+=======
+import Sidebar from './SideBar';
+import Header from './Header';
+import RequestForm from './RequestForm';
+import { useSelector } from 'react-redux';
+import Notices from './Notices';
+import Routines from './Routines';
+import Learnings from './Learnings/Learnings';
+import Quiz from './Quiz/Quiz';
+import Results from './Results/Results';
+import Profile from './Profile/Profile';
+import Classes from './Classes/Classes';
+>>>>>>> 4818a34177d275dad19ef3f644b53320f14a8295
 
 const Widget = ({ title, progress }) => {
   return (
@@ -93,7 +106,10 @@ const ProgressBar = ({ label, progress }) => {
 const Dashboard = () => {
   const [user, setUser] = useState({});
   const [courses, setCourses] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const componentNumber = useSelector(store=>store.userDashboard.componentNumber)
+  
 
   useEffect(() => {
     const user = (JSON.parse(localStorage.getItem("user"))); // Replace with the actual user ID
@@ -121,27 +137,32 @@ const Dashboard = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const progressBarData = courses.map(course => ({
-    name: course.courseName,
-    progress: Math.floor(Math.random() * 100),
-  }));
+  // const progressBarData = courses.map(course => ({
+  //   name: course.courseName,
+  //   progress: Math.floor(Math.random() * 100),
+  // }));
 
-  const timeSpentData = [
-    { day: 'Sun', hours: 2 },
-    { day: 'Mon', hours: 4 },
-    { day: 'Tue', hours: 3 },
-    { day: 'Wed', hours: 5 },
-    { day: 'Thu', hours: 4 },
-    { day: 'Fri', hours: 3 },
-    { day: 'Sat', hours: 2 },
-  ];
+  // const timeSpentData = [
+  //   { day: 'Sun', hours: 2 },
+  //   { day: 'Mon', hours: 4 },
+  //   { day: 'Tue', hours: 3 },
+  //   { day: 'Wed', hours: 5 },
+  //   { day: 'Thu', hours: 4 },
+  //   { day: 'Fri', hours: 3 },
+  //   { day: 'Sat', hours: 2 },
+  // ];
+
+  const components= [<Notices />, <RequestForm/>,<Routines />, <Learnings />, <Quiz />, <Results />, <Profile />, <Classes />]
+  const componentToRender= components[componentNumber];
 
   return (
     <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
       <Sidebar />
       <div className="main-content">
         <Header user={user} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
-        <div className="dashboard">
+        {/* This was previous dashboard */}
+        <div>
+        {/*<div className="dashboard">
           <h2>Progress Report on your Revision and Readings</h2>
           <div className="widgets">
             <Widget title="Reading" progress={75} />
@@ -184,14 +205,20 @@ const Dashboard = () => {
               <h3>Your Instructor</h3>
               <div className="instructor-icons">
                 {/* Replace with actual instructor images */}
-                <img src="assets/images/profile.png" alt="Instructor" />
+                {/*<img src="assets/images/profile.png" alt="Instructor" />
                 <img src="assets/images/profile.png" alt="Instructor" />
                 <img src="assets/images/profile.png" alt="Instructor" />
                 <img src="assets/images/profile.png" alt="Instructor" />
               </div>
             </div>
           </div>
+        </div> */}
         </div>
+
+        {/* New Dashboard */}
+        {componentToRender}
+        
+        
       </div>
     </div>
   );
