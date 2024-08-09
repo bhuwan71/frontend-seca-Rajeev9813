@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="relative mt-16 bg-deep-purple-accent-400">
@@ -58,12 +59,12 @@ const Footer = () => {
               </p>
               <ul className="mt-2 space-y-2">
                 <li>
-                  <a
-                    href="/"
+                  <Link
+                    to="/admin/login"
                     className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                   >
-                    Vocabulary
-                  </a>
+                     Admin Login
+                  </Link>
                 </li>
                 <li>
                   <a

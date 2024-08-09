@@ -9,7 +9,7 @@ const CareerPage = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-green-600 pt-[200px] text-white py-20 text-center relative">
+      <section className="bg-green-600 h-[60vh] pt-[200px] text-white  text-center relative">
         <div className="container mx-auto">
           <h1 className="text-5xl font-bold mb-4">
             Join Our Language Learning Team
@@ -22,7 +22,7 @@ const CareerPage = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 px-10 bg-gray-100">
+      <section className="py-20 h-[40vh] px-10 bg-gray-100">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mx-2 mb-4">About Us</h2>
           <p className="text-gray-700 px-10 mb-8 leading-relaxed">
@@ -35,7 +35,7 @@ const CareerPage = () => {
           <img
             src="https://c0.wallpaperflare.com/preview/506/555/733/career-leadership-success-businessman.jpg"
             alt="About Us"
-            className="mx-auto rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2"
+            className="mx-auto rounded-lg shadow-lg w-full h-[200px] md:w-2/3 lg:w-1/2"
           />
         </div>
       </section>

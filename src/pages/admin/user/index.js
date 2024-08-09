@@ -12,9 +12,9 @@ const Users = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await Api.get("/course/get_all_course");
+      const res = await Api.get("/user/get_all_user");
       if (res) {
-        setTableData(res.data);
+        setTableData(res?.data?.users);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -42,9 +42,9 @@ const Users = () => {
       </div>
       <div className="col-span-12 xl:col-span-8">
         <UserTable
-          // fetchData={fetchData}
+          fetchData={fetchData}
           heading={"List of  Users"}
-          // tableData={tableData}
+          tableData={tableData}
           loading={loading}
         />
       </div>

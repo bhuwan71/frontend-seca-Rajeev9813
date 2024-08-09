@@ -2,7 +2,7 @@
 import { Spin, Modal } from "antd";
 import { useState, useEffect } from "react";
 import debounce from "lodash/debounce";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"; // Import edit icon
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,8 +15,6 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredData, setFilteredData] = useState(tableData);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState("");
 
   const debouncedSearch = debounce((term) => {
     setSearchTerm(term);
@@ -28,10 +26,10 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
 
   const handleDelete = async (rowData) => {
     try {
-      const response = await Api.delete(`/courses/${rowData.id}`);
+      const response = await Api.delete(`/user/delete_user/${rowData._id}`);
       if (response) {
         fetchData(currentPage);
-        toast.success("Courses Deleted Successfully", {
+        toast.success("User Deleted Successfully", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -58,9 +56,9 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
 
   const showDeleteConfirm = (rowData) => {
     confirm({
-      title: "Are you sure delete this Users?",
+      title: "Are you sure you want to delete this user?",
       icon: <ExclamationCircleFilled />,
-      content: `${rowData.title}`,
+      content: `${rowData.firstName} ${rowData.lastName}`,
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
@@ -73,18 +71,18 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
     });
   };
 
-  const handleImageClick = (url) => {
-    setModalImageUrl(url);
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleEdit = (rowData) => {
+    // Logic for editing user
+    console.log("Edit user:", rowData);
+    // You can navigate to an edit page or open a modal for editing here
   };
 
   useEffect(() => {
-    const filtered = tableData?.filter((rowData) =>
-      rowData.name.en?.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = tableData?.filter(
+      (rowData) =>
+        rowData.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        rowData.lastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        rowData.email?.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
   }, [searchTerm, tableData]);
@@ -123,8 +121,8 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
               <input
                 type="text"
                 id="table-search-users"
-                className="block px-10  py-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search for Courses"
+                className="block px-10 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search for Users"
                 onChange={handleSearch}
               />
             </div>
@@ -137,7 +135,7 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
             </div>
           ) : (
             <table className="w-full shadow-xl text-sm text-left text-gray-500 dark:text-gray-dark">
-              <thead className="text-xs bg-black text-white text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+              <thead className="text-xs bg-black text-white text-gray-700 uppercase dark:text-gray-400">
                 <tr>
                   <th className="px-6 py-3">First Name</th>
                   <th className="px-6 py-3">Last Name</th>
@@ -150,23 +148,17 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
                   {filteredData.map((rowData, index) => (
                     <tr
                       key={index}
-                      className={`bg-white cursor-pointer dark:text-white border-b border-[#DFDFDF]`}
+                      className="bg-white cursor-pointer dark:text-white border-b border-[#DFDFDF] hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
-                      <td className="px-6 py-2 whitespace-nowrap">
-                        <img
-                          className="w-10 h-10 rounded-full object-cover"
-                          src={rowData.icon}
-                          alt={rowData.icon}
-                          onClick={() => handleImageClick(rowData.url)}
-                        />
-                      </td>
-                      <td className="px-6 py-4">{rowData.name.en}</td>
-                      <td className="flex py-5 gap-2">
+                      <td className="px-6 py-3">{rowData?.firstName}</td>
+                      <td className="px-6 py-3">{rowData?.lastName}</td>
+                      <td className="px-6 py-3">{rowData?.email}</td>
+                      <td className="flex py-3 gap-4">
                         <button
                           onClick={() => showDeleteConfirm(rowData)}
-                          className="bg-meta-1 hover:bg-meta-1 text-white font-bold py-1 px-4 mx-8 rounded-md transition duration-300"
+                          className="bg-red-500 hover:bg-red-700 mx-3 text-white font-bold py-1 px-4 rounded-md transition duration-300"
                         >
-                          <AiOutlineDelete size={16} />
+                          <AiOutlineDelete size={12} />
                         </button>
                       </td>
                     </tr>
@@ -187,19 +179,6 @@ const UserTable = ({ heading, tableData, loading, fetchData }) => {
           )}
         </div>
       </div>
-
-      <Modal
-        open={isModalOpen}
-        footer={null}
-        onCancel={handleModalClose}
-        centered
-      >
-        <img
-          src={modalImageUrl}
-          alt="Category Image"
-          className="w-full h-auto max-w-xs mx-auto"
-        />
-      </Modal>
     </>
   );
 };

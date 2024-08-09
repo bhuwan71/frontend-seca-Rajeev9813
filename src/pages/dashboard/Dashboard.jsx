@@ -1,67 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
-import ProgressBarChart from './ProgressBarChart';
-import TimeSpentChart from './TimeSpentChart';
-import { Link, useNavigate } from 'react-router-dom';
+// import ProgressBarChart from './ProgressBarChart';
+// import TimeSpentChart from './TimeSpentChart';
+// import { useNavigate } from 'react-router-dom';
 import { getAllCourse } from '../../apis/Api';
-<<<<<<< HEAD
-
-
-const Sidebar = () => {
-    
-  return (
-    <div className="sidebar">
-      <div className="sidebar-logo">
-        <img src="assets/images/logo.png" alt="Logo" />
-      </div>
-      <ul className="sidebar-nav">
-        <li className="active"><FaHome /> Home</li>
-        <li><FaComments /> Course Overview</li>
-        <li><FaCalendarAlt /> Chat</li>
-        <li><FaBook /> Schedule</li>
-        <li><FaCog /> Resources</li>
-        <li><FaQuestionCircle /> Quiz</li>
-      </ul>
-      <div className="sidebar-footer">
-        <ul>
-          <li><FaLifeRing /> Help and Support</li>
-          <li onClick={() => window.location.href = "/login"}><FaSignOutAlt /> Log out</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const Header = ({ user, toggleDarkMode, isDarkMode }) => {
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good Evening';
-    if (hour < 18) return 'Good Afternoon';
-    return 'Good Evening';
-  };
-
-  return (
-    <div className="header">
-      <input type="text" placeholder="Search" className="search-bar" />
-      <div className="user-section">
-        <FaBell className="icon" />
-        {isDarkMode ? (
-          <FaSun className="icon" onClick={toggleDarkMode} />
-        ) : (
-          <FaMoon className="icon" onClick={toggleDarkMode} />
-        )}
-        <Link to="profile">
-        <div className="user-profile">
-          <p>{getGreeting()}, {user.firstName} {user.lastName}</p>
-          <img src={user.profilePic || 'assets/images/profile.png'} alt="User" />
-        </div>
-        </Link>
-      </div>
-    </div>
-  );
-};
-=======
 import Sidebar from './SideBar';
 import Header from './Header';
 import RequestForm from './RequestForm';
@@ -73,7 +16,6 @@ import Quiz from './Quiz/Quiz';
 import Results from './Results/Results';
 import Profile from './Profile/Profile';
 import Classes from './Classes/Classes';
->>>>>>> 4818a34177d275dad19ef3f644b53320f14a8295
 
 const Widget = ({ title, progress }) => {
   return (

@@ -103,7 +103,7 @@ const QuizItem = ({ quiz }) => {
         onClick={handleShowAnswer}
         className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors mt-4"
       >
-        {showAnswer ? "Reset Quiz" : "Show Results"}
+        {showAnswer ? "Hide Results" : "Show Results"}
       </button>
     </div>
   );
@@ -129,9 +129,15 @@ const Quizzes = () => {
     <>
       <Navbar />
       <div className="py-28 px-10">
-        {quizData?.map((quiz) => (
-          <QuizItem key={quiz._id} quiz={quiz} />
-        ))}
+        {quizData.length > 0 ? (
+          quizData.map((quiz) => (
+            <QuizItem key={quiz._id} quiz={quiz} />
+          ))
+        ) : (
+          <p className="text-center text-gray-600 text-lg font-medium">
+            No quizzes available at the moment.
+          </p>
+        )}
       </div>
       <Footer />
     </>
