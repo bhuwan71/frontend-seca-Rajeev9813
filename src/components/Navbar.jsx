@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect } from "react";
 import { FaUserAlt, FaUserPlus } from "react-icons/fa"; // Import icons
 import "./Navbar.css"; // If you still have some custom styles
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const Navbar = () => {
   useEffect(() => {
     // Get user data from local storage
     fetchUserData();
-
+  // eslint-disable-next-line
   },[]);
 
   const fetchUserData = ()=>{
@@ -27,10 +27,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.clear();
     toast.success("User Loggedout");
-    // window.location.href = "/login";
-    setTimeout(()=>{
-      navigate("/login")
-    },500)
+    window.location.href = "/login";
   };
 
   return (

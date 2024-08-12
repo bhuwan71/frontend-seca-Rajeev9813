@@ -104,7 +104,7 @@ const Register = () => {
   return (
     <>
       <div 
-      className=" md:w-full   md:flex md:justify-center md:items-center"
+      className="font-sans md:w-full   md:flex md:justify-center md:items-center"
         style={{
           backgroundImage:
             "url(../../assets/images/bg.png)",
