@@ -11,10 +11,7 @@ const DropdownUser = () => {
   const navigate = useNavigate();
 
   const logout = () => {
-    removeLocalStorageItem("access_token");
-    removeLocalStorageItem("isloggedIn");
-    removeLocalStorageItem("user_role");
-    removeLocalStorageItem("token_type");
+    localStorage.clear();
     toast.success("Logout Successfully", {
       position: "top-right",
       autoClose: 5000,
@@ -25,7 +22,7 @@ const DropdownUser = () => {
       progress: undefined,
       theme: "light",
     });
-    navigate("/");
+    navigate("/admin/login");
   };
 
   // close on click outside

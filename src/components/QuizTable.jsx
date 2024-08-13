@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { Spin, Modal } from "antd";
 import { useState, useEffect } from "react";
 import debounce from "lodash/debounce";
@@ -9,7 +7,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Api from "../apis/Api";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import QuizDetailsModal from "./QuizDetailsModal"; // Import the QuizDetailsModal component
 
 const { confirm } = Modal;
 
@@ -18,8 +16,7 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
   const [filteredData, setFilteredData] = useState(tableData);
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState("");
-  const navigate = useNavigate();
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
 
   const debouncedSearch = debounce((term) => {
     setSearchTerm(term);
@@ -31,10 +28,10 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
 
   const handleDelete = async (rowData) => {
     try {
-      const response = await Api.delete(`course/delete_course/${rowData.id}`);
+      const response = await Api.delete(`/quiz/delete_quiz/${rowData._id}`);
       if (response) {
         fetchData(currentPage);
-        toast.success("Course Deleted Successfully", {
+        toast.success("Quiz Deleted Successfully", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -61,9 +58,9 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
 
   const showDeleteConfirm = (rowData) => {
     confirm({
-      title: "Are you sure you want to delete this course?",
+      title: "Are you sure you want to delete this Quiz?",
       icon: <ExclamationCircleFilled />,
-      content: `${rowData.courseName}`,
+      content: `${rowData.quizName}`,
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
@@ -76,22 +73,30 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
     });
   };
 
-  const handleEdit = (rowData) => {
-    navigate(`/admin/course/${rowData._id}`);
-  };
-
-  const handleImageClick = (url) => {
-    setModalImageUrl(url);
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleRowClick = async (rowData) => {
+    try {
+      const response = await Api.get(`/quiz/get_single_quiz/${rowData._id}`);
+      if (response) {
+        setSelectedQuiz(response?.data?.quiz);
+        setIsModalOpen(true);
+      }
+    } catch (error) {
+      toast.error("Failed to load quiz details", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   useEffect(() => {
     const filtered = tableData?.filter((rowData) =>
-      rowData.courseName?.toLowerCase().includes(searchTerm.toLowerCase())
+      rowData.quizName?.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
   }, [searchTerm, tableData]);
@@ -150,7 +155,6 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
                   <th className="px-4 py-3">Category</th>
                   <th className="px-4 py-3">Number of Questions</th>
                   <th className="px-4 py-3">Difficulty Level</th>
-                  <th className="px-4 py-3">Duration (mins)</th>
                   <th className="px-4 py-3">Description</th>
                   <th className="px-4 py-3">Actions</th>
                 </tr>
@@ -160,30 +164,20 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
                   {filteredData?.map((rowData, index) => (
                     <tr
                       key={index}
-                      className={`bg-white cursor-pointer dark:text-white border-b border-[#DFDFDF]`}
+                      className="bg-white cursor-pointer dark:text-white border-b border-[#DFDFDF] hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => handleRowClick(rowData)}
                     >
-                      <td className="px-6 py-2 whitespace-nowrap">
-                        <img
-                          className="w-10 h-10 rounded-full object-cover"
-                          src={rowData?.courseImage}
-                          onClick={() => handleImageClick(rowData?.courseImage)}
-                        />
-                      </td>
-                      <td className="px-6 py-4">{rowData?.courseName}</td>
-                      <td className="px-6 py-4">{rowData?.courseCategory}</td>
-                      <td className="px-6 py-4">{rowData?.coursePrice}</td>
-                      <td className="px-6 py-4">
-                        {rowData?.courseDescription}
-                      </td>
+                      <td className="px-6 py-4">{rowData.quizName}</td>
+                      <td className="px-6 py-4">{rowData.quizCategory}</td>
+                      <td className="px-6 py-4">{rowData.questions.length}</td>
+                      <td className="px-6 py-4">{rowData.difficultyLevel}</td>
+                      <td className="px-6 py-4">{rowData.quizDescription}</td>
                       <td className="flex py-5 gap-2">
                         <button
-                          onClick={() => handleEdit(rowData)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-4 mx-2 rounded-md transition duration-300"
-                        >
-                          <AiOutlineEdit size={16} />
-                        </button>
-                        <button
-                          onClick={() => showDeleteConfirm(rowData)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            showDeleteConfirm(rowData);
+                          }}
                           className="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded-md transition duration-300"
                         >
                           <AiOutlineDelete size={16} />
@@ -197,7 +191,7 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
                   <tr>
                     <td colSpan={6} className="text-center py-20">
                       <p className="text-lg dark:text-white text-gray-500">
-                        No courses found.
+                        No Quizzes found.
                       </p>
                     </td>
                   </tr>
@@ -207,19 +201,13 @@ const QuizTable = ({ heading, tableData, loading, fetchData }) => {
           )}
         </div>
       </div>
-
-      <Modal
-        open={isModalOpen}
-        footer={null}
-        onCancel={handleModalClose}
-        centered
-      >
-        <img
-          src={modalImageUrl}
-          alt="Course Image"
-          className="w-full h-auto max-w-xs mx-auto"
+      {isModalOpen && (
+        <QuizDetailsModal
+          visible={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          quizData={selectedQuiz}
         />
-      </Modal>
+      )}
     </>
   );
 };

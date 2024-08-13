@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
-import ProgressBarChart from './ProgressBarChart';
-import TimeSpentChart from './TimeSpentChart';
-import { useNavigate } from 'react-router-dom';
+// import ProgressBarChart from './ProgressBarChart';
+// import TimeSpentChart from './TimeSpentChart';
+// import { useNavigate } from 'react-router-dom';
 import { getAllCourse } from '../../apis/Api';
 import Sidebar from './SideBar';
 import Header from './Header';
