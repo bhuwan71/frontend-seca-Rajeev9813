@@ -11,6 +11,7 @@ import { GrUserManager } from "react-icons/gr";
 import { RiUserAddLine } from "react-icons/ri";
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaQuestion } from "react-icons/fa";
+import { SiResurrectionremixos } from "react-icons/si";
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
@@ -164,6 +165,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               OTHERS
             </h3>
             <ul className="mb-6 flex flex-col gap-1.5">
+              <li>
+                <NavLink
+                  to="/admin/quizResult"
+                  className={`group relative flex items-center gap-2.5 rounded-full pl-6 font-medium ease-in-out hover:bg-[#EDE7F6] py-2 hover:text-[#5E35B1] transition-colors ${
+                    pathname.startsWith("/admin/result")
+                      ? "bg-[#EDE7F6]  text-[#5E35B1]"
+                      : ""
+                  }`}
+                >
+                  <SiResurrectionremixos size={24} />
+                  Result
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/admin/quizzes"

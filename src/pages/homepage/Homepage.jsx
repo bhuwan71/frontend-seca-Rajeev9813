@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 // import Navbar from "../../components/Navbar";
 // import { testApi } from "../../apis/Api";
 import Navbar from "../../components/Navbar";
+import  Footer  from "../../components/Footer";
 
 const Homepage = () => {
   // Print Hello!, when page load (Automatic)
@@ -104,12 +105,11 @@ const Homepage = () => {
               margin-top: 200px;
             }
             .hero_title {
-              font-weight: 600;
+              font-weight: 800;
               font-size: 3rem;
             }
             .hero_subtitle,
             .hero-description {
-              font-weight: 400;
               font-size: 1.3rem;
             }
             .email {
@@ -592,68 +592,7 @@ const Homepage = () => {
           </nobr>
         </p>
       </div>
-      <footer className="footer">
-        <p>
-          Questions? Call <a href="">9813420243</a>
-        </p>
-        <div className="footer-cols">
-          <ul>
-            <li>
-              <a href="">FAQ</a>
-            </li>
-            <li>
-              <a href="">Investor Relations</a>
-            </li>
-            <li>
-              <a href="">Privacy</a>
-            </li>
-            <li>
-              <a href="">Speed Test</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">Help Centre</a>
-            </li>
-            <li>
-              <a href="">Jobs</a>
-            </li>
-            <li>
-              <a href="">Cookie Preferences</a>
-            </li>
-            <li>
-              <a href="">Legal Notices</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">Account</a>
-            </li>
-            <li>
-              <a href="">Ways to Watch</a>
-            </li>
-            <li>
-              <a href="">Corporate Information</a>
-            </li>
-            <li>
-              <a href="">Only on Netflix</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">Media Centre</a>
-            </li>
-            <li>
-              <a href="">Terms of Use</a>
-            </li>
-            <li>
-              <a href="">Privacy</a>
-            </li>
-          </ul>
-        </div>
-   
-        <p className="copyright-txt">My Learning</p>
-      </footer>
+      <Footer />
     </>
   );
 };

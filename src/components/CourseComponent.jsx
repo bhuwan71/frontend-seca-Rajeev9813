@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTag, FaMoneyBillAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const getPlaceholderImage = (firstLetter) => {
   const colors = {
@@ -19,6 +20,7 @@ const getPlaceholderImage = (firstLetter) => {
 const CourseComponent = ({ course }) => {
   const formattedDate = new Date(course.createdAt).toLocaleDateString();
   const firstLetter = course.courseName.charAt(0);
+  const navigate = useNavigate();
 
   return (
     <tr className="border-b">
@@ -40,11 +42,9 @@ const CourseComponent = ({ course }) => {
         </span>
       </td>
       <td className="py-2 px-4">
-        <FaMoneyBillAlt className="text-gray-500 mr-2" />
-        <span className="text-gray-700 font-medium">${course.coursePrice}</span>
-      </td>
-      <td className="py-2 px-4">
-        <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button onClick={()=>{
+            navigate(`/admin/classSchedule/${course?._id}`)
+        }} className="bg-blue-500 text-white text-sm px-3 py-1 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
           View
         </button>
       </td>

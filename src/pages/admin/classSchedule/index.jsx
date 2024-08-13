@@ -1,36 +1,42 @@
 import React from "react";
 import { FaChalkboardTeacher, FaClock, FaGlobe } from "react-icons/fa";
-import Layout from "../admin/admin_dashboard/layout";
+import Layout from "../admin_dashboard/layout";
 
 const classSchedule = [
   {
     day: "Monday",
-    time: "10:00 AM - 11:30 AM",
-    language: "Spanish",
-    teacher: "Mr. Garcia",
+    time: "9:00 AM - 10:30 AM",
+    section: "English - Beginner",
+    teacher: "Ms. Smith",
+  },
+  {
+    day: "Tuesday",
+    time: "11:00 AM - 12:30 PM",
+    section: "English - Intermediate",
+    teacher: "Mr. Johnson",
   },
   {
     day: "Wednesday",
     time: "1:00 PM - 2:30 PM",
-    language: "French",
-    teacher: "Ms. Dupont",
+    section: "English - Advanced",
+    teacher: "Dr. Brown",
   },
   {
-    day: "Friday",
+    day: "Thursday",
     time: "3:00 PM - 4:30 PM",
-    language: "Japanese",
-    teacher: "Mr. Tanaka",
+    section: "English - Conversational",
+    teacher: "Mrs. Davis",
   },
 ];
 
 const ClassSchedule = () => {
   return (
     <Layout>
-      <h1 className="text-4xl py-5 font-extrabold text-center mb-10 text-indigo-600">
+      <h1 className="text-4xl py-5 font-extrabold text-center mb-5 text-indigo-600">
         Class Schedule
       </h1>
-      <div className="container mx-auto py-10 px-4">
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto  px-4">
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           {classSchedule?.map((classInfo, index) => (
             <div
               key={index}
@@ -39,7 +45,7 @@ const ClassSchedule = () => {
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold text-indigo-800 flex items-center">
                   <FaGlobe className="text-blue-500 mr-2" />
-                  {classInfo.language} Class
+                  {classInfo.section}
                 </h2>
                 <span className="text-indigo-500">{classInfo.day}</span>
               </div>
