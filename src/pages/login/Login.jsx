@@ -58,172 +58,55 @@ const Login = () => {
   };
 
   return (
-    <>    
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My Learning</title>
-        <link rel="shortcut icon" href="https://www.netflix.com/in/favicon.ico" type="image/x-icon" />
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-        <style>{`
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-          }
+    
+    <div className='flex justify-center items-center flex-col w-full h-screen bg-gray-100'>
+      <div className=' bg-black w-1/2 flex justify-center items-center h-16 rounded-t-lg'><img src='assets/images/logo.png' alt='logo' height="150px" width="100px"/></div>
+    <div className="w-1/2 h-3/5 flex shadow-lg rounded-lg">
+  <div className="hidden md:flex w-1/2 bg-red-500 items-center justify-center rounded-bl-lg">
+    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnuUjdyqXf9_CxonrF6E9LMMjZri--bjrSPVH0E4M57GyZ1b0T" alt="login-img" className="w-4/5 rounded-md h-auto" />
+  </div>
+  <div className="flex flex-col justify-center w-full md:w-1/2 max-w-md mx-auto p-8  shadow-md rounded-lg">
+    <h2 className="text-2xl font-bold text-center mb-6 ">Sign In</h2>
+    <form onSubmit={handleLogin}>
+      <div className="mb-4">
+        <label className="block ">Email</label>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block ">Password</label>
+        <input
+          type="password"
+          placeholder="Enter password"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full py-2 px-4 bg-black  text-white rounded-lg hover:bg-gray-700"
+      >
+        Sign In
+      </button>
+      <div className="text-center mt-4">
+        <Link to="#" className="hover:underline">
+          Forgot your password?
+        </Link>
+      </div>
+      <div className="text-center my-2">
+        <p>New to My Learning? <Link to="/register" className='text-yellow-700 underline'>Sign up now</Link></p>
+      </div>
+    </form>
+  </div>
+</div>
 
-          body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: url('https://media.istockphoto.com/id/1047570732/vector/english.jpg?s=612x612&w=0&k=20&c=zgafUJxCytevU-ZRlrZlTEpw3mLlS_HQTIOHLjaSPPM=');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-          }
-
-          .wrapper {
-            width: 400px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            color: #fff;
-          }
-
-          .wrapper h1 {
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: 600;
-          }
-
-          .input-box {
-            position: relative;
-            margin-bottom: 20px;
-          }
-
-          .input-box input {
-            width: 100%;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 16px;
-          }
-
-          .input-box label {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 16px;
-            pointer-events: none;
-            transition: all 0.3s ease;
-          }
-
-          .input-box input:focus ~ label,
-          .input-box input:valid ~ label {
-            top: -10px;
-            left: 15px;
-            font-size: 12px;
-            color: #ffeb3b;
-          }
-
-          .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: #e50914;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-          }
-
-          .btn:hover {
-            background: #d40813;
-          }
-
-          .error {
-            color: #ff0000;
-            font-size: 12px;
-            text-align: left;
-            margin-top: 5px;
-          }
-
-          .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 10px;
-          }
-
-          .remember-forgot a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-          }
-
-          .remember-forgot a:hover {
-            text-decoration: underline;
-          }
-
-          .register-link {
-            margin-top: 20px;
-            font-size: 14px;
-          }
-
-          .register-link a {
-            color: #ffeb3b;
-            text-decoration: none;
-          }
-
-          .register-link a:hover {
-            text-decoration: underline;
-          }
-        `}</style>
-      </head>
-      
-        <div className="wrapper">
-          <form onSubmit={handleLogin}>
-            <h1>Sign In to My Learning</h1>
-            <div className="input-box">
-              <input 
-                type="text" 
-                required 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <label>Email</label>
-              {emailError && <p className="error">{emailError}</p>}
-            </div>
-            <div className="input-box">
-              <input 
-                type="password" 
-                required 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <label>Password</label>
-              {passwordError && <p className="error">{passwordError}</p>}
-            </div>
-            <button type="submit" className="btn">Sign In</button>
-            <div className="remember-forgot">
-              <label><input type="checkbox" /> Remember Me</label>
-              <a href="/">Need help?</a>
-            </div>
-            <div className="register-link">
-              <p>New to My Learning? <Link to="/register">Sign up now</Link></p>
-            </div>
-          </form>
-        </div>
-    </>
+    </div>
   );
 };
 

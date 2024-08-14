@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "./utils/userSlice";
 import "./Navbar.css"; // If you still have some custom styles
+import logoImage from '../img/logo.png'
 
 const Navbar = () => {
   const user = useSelector(store => store.user.userData);
@@ -36,7 +37,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="">
               <img
-                src="assets/images/logo.png"
+                src={logoImage}
                 alt="Logo"
                 className="h-[70px] w-[150px]"
               />

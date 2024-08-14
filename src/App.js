@@ -43,6 +43,7 @@ import { Provider } from "react-redux";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AdminLoginForm from "./pages/login/AdminLogin";
 import QuizResults from "./pages/admin/results";
+import Module from "./pages/dashboard/Learnings/Module/Module";
 
 // Task create for login and register
 const App = () => {
@@ -120,6 +121,7 @@ const App = () => {
             element={<ProtectedRoute component={<Dashboard />} />}
           />
           <Route path="/dashboard/request" element={<RequestForm />} />
+          <Route path="/dashboard/module" element={<Module />} />
         </Routes>
       </Router>
     </Provider>

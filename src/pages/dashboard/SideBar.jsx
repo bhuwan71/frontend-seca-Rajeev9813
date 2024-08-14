@@ -6,7 +6,7 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { SiGoogleclassroom } from "react-icons/si";
 
 
-const Sidebar = () => {
+const Sidebar = ({componentNumber}) => {
 
   const dispatch = useDispatch();
     
@@ -16,15 +16,12 @@ const Sidebar = () => {
           <img src="assets/images/logo.png" alt="Logo" />
         </div></Link>
         <ul className="sidebar-nav">
-          <li onClick={()=>dispatch(setComponentNumber(3))}><FaCalendarAlt /> Learning</li>
-          <li onClick={()=>dispatch(setComponentNumber(4))}><FaQuestionCircle /> Quiz</li>
-          <li onClick={()=>dispatch(setComponentNumber(5))}><TbReportAnalytics /> Results</li>
-          <li onClick={()=>dispatch(setComponentNumber(6))}><FaUserAlt /> Profile</li>
-          <li onClick={()=>dispatch(setComponentNumber(7))}><SiGoogleclassroom /> Classes</li>
-          {/* <li><FaComments /> Course Overview</li>
-          <li><FaBook /> Schedule</li>
-          <li><FaCog /> Resources</li> */}
-          <Link to="/"><li ><FaHome /> Home</li></Link>
+          <li onClick={()=>dispatch(setComponentNumber(3))}  className={ componentNumber ===3? 'active': ''}><FaHome /> Home</li>
+          <li onClick={()=>dispatch(setComponentNumber(4))} className={ componentNumber ===4? 'active': ''}><FaCalendarAlt /> Learning</li>
+          <li onClick={()=>dispatch(setComponentNumber(5))} className={ componentNumber ===5? 'active': ''}><FaQuestionCircle /> Quiz</li>
+          <li onClick={()=>dispatch(setComponentNumber(6))} className={ componentNumber ===6? 'active': ''}><TbReportAnalytics /> Results</li>
+          <li onClick={()=>dispatch(setComponentNumber(7))} className={ componentNumber ===7? 'active': ''}><FaUserAlt /> Profile</li>
+          <li onClick={()=>dispatch(setComponentNumber(2))} className={ componentNumber ===8? 'active': ''}><SiGoogleclassroom /> Classes</li>
         </ul>
         <div className="sidebar-footer">
           <ul>

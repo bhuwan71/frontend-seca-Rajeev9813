@@ -18,7 +18,7 @@ const RequestForm = () => {
   };
 
   return (
-    <div className="request-form bg-white p-6 rounded-lg shadow-lg w-1/2 mx-auto">
+    <div className="request-form bg-white text-black p-6 rounded-lg shadow-lg w-1/2 mx-auto">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="subject" className="block text-gray-700">Subject</label>

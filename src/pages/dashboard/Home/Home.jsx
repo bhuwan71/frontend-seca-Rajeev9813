@@ -1,60 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { FaBell, FaBook, FaCalendarAlt, FaCog, FaComments, FaHome, FaLifeRing, FaMoon, FaQuestionCircle, FaSignOutAlt, FaSun } from 'react-icons/fa';
-import './Dashboard.css';
+import './Home.css';
 import ProgressBarChart from './ProgressBarChart';
 import TimeSpentChart from './TimeSpentChart';
-
-const Sidebar = () => {
-  return (
-    <div className="sidebar">
-      <div className="sidebar-logo">
-        <img src="assets/images/logo.png" alt="Logo" />
-      </div>
-      <ul className="sidebar-nav">
-        <li className="active"><FaHome /> Home</li>
-        <li><FaComments /> Course Overview</li>
-        <li><FaCalendarAlt /> Chat</li>
-        <li><FaBook /> Schedule</li>
-        <li><FaCog /> Resources</li>
-        <li><FaQuestionCircle /> Quiz</li>
-      </ul>
-      <div className="sidebar-footer">
-        <ul>
-          <li><FaLifeRing /> Help and Support</li>
-          <li onClick={() => window.location.href = "/login"}><FaSignOutAlt /> Log out</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const Header = ({ user, toggleDarkMode, isDarkMode }) => {
-  const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good Evening';
-    if (hour < 18) return 'Good Afternoon';
-    return 'Good Evening';
-  };
-
-  return (
-    <div className="header">
-      <input type="text" placeholder="Search" className="search-bar" />
-      <div className="user-section">
-        <FaBell className="icon" />
-        {isDarkMode ? (
-          <FaSun className="icon" onClick={toggleDarkMode} />
-        ) : (
-          <FaMoon className="icon" onClick={toggleDarkMode} />
-        )}
-        <div className="user-profile">
-          <p>{getGreeting()}, {user.firstName} {user.lastName}</p>
-          <img src={user.profilePic || 'assets/images/profile.png'} alt="User" />
-        </div>
-      </div>
-    </div>
-  );
-};
+import { getAllCourse } from '../../../apis/Api';
 
 const Widget = ({ title, progress }) => {
   return (
@@ -87,23 +36,14 @@ const ProgressBar = ({ label, progress }) => {
 const Home = () => {
   const [user, setUser] = useState({});
   const [courses, setCourses] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const userId = 'user-id-from-context-or-auth'; // Replace with the actual user ID
-
-    // Fetch user data
-    axios.get(`http://localhost:5000/api/users/${userId}`)
-      .then(response => {
-        setUser(response.data.user);
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
+    const user = (JSON.parse(localStorage.getItem("user"))); 
+    setUser(user);
+    
 
     // Fetch courses data
-    axios.get('http://localhost:5000/api/courses/get_all_course')
-      .then(response => {
+    getAllCourse().then(response => {
         setCourses(response.data.course);
       })
       .catch(error => {
@@ -111,9 +51,6 @@ const Home = () => {
       });
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const progressBarData = courses.map(course => ({
     name: course.courseName,
@@ -131,10 +68,6 @@ const Home = () => {
   ];
 
   return (
-    <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
-      <Sidebar />
-      <div className="main-content">
-        <Header user={user} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
         <div className="dashboard">
           <h2>Progress Report on your Revision and Readings</h2>
           <div className="widgets">
@@ -186,8 +119,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      
+
   );
 };
 

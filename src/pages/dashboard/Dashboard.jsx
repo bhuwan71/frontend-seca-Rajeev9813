@@ -12,10 +12,11 @@ import { useSelector } from 'react-redux';
 import Notices from './Notices';
 import Routines from './Routines';
 import Learnings from './Learnings/Learnings';
-import Quiz from './Quiz/Quiz';
+import Quiz from './Quiz/Quiz.jsx';
 import Results from './Results/Results';
 import Profile from './Profile/Profile';
 import Classes from './Classes/Classes';
+import Home from './Home/Home';
 
 const Widget = ({ title, progress }) => {
   return (
@@ -94,12 +95,12 @@ const Dashboard = () => {
   //   { day: 'Sat', hours: 2 },
   // ];
 
-  const components= [<Notices />, <RequestForm/>,<Routines />, <Learnings />, <Quiz />, <Results />, <Profile />, <Classes />]
+  const components= [ <Notices />, <RequestForm/>,<Routines />, <Home />, <Learnings />, <Quiz />, <Results />, <Profile />, <Classes />]
   const componentToRender= components[componentNumber];
 
   return (
     <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
-      <Sidebar />
+      <Sidebar componentNumber={componentNumber}/>
       <div className="main-content">
         <Header user={user} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
         {/* This was previous dashboard */}

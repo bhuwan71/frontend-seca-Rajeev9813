@@ -17,13 +17,13 @@ const config = {
 export const testApi = () => Api.get("/test");
 
 // Register Api
-export const registerUserApi = (data) => Api.post("/api/user/create", data);
+export const registerUserApi = (data) => Api.post("/user/create", data);
 
 // login api
-export const loginUserApi = (data) => Api.post("/api/user/login", data);
+export const loginUserApi = (data) => Api.post("/user/login", data);
 
 // get all courses
-export const getAllCourse = () => Api.get("/api/course/get_all_course", config);
+export const getAllCourse = () => Api.get("/course/get_all_course", config);
 
 // http://localhost:5000/test
 export default Api;
