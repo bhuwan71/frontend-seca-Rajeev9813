@@ -36,10 +36,10 @@ const Resources = () => {
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">Weekly Lessons</h1>
       {lessons.map((week, weekIndex) => (
-        <div key={weekIndex} className="mb-4">
-          <div className="flex justify-between items-center bg-blue-500 text-white p-2 rounded">
+        <div key={weekIndex} className="mb-4 cursor-pointer" >
+          <div className="flex justify-between items-center bg-blue-500 text-white p-2 rounded" onClick={() => toggleExpand(weekIndex)}>
             <span>{week.week}</span>
-            <button onClick={() => toggleExpand(weekIndex)}>
+            <button >
               {expanded === weekIndex ? '-' : '+'}
             </button>
           </div>
