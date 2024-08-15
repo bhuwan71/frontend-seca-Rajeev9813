@@ -36,7 +36,8 @@ const CourseDetails = () => {
 
   return (
     <>
-      <div className="max-w-4xl my-20  mx-auto p-6 bg-white rounded-lg shadow-md ">
+      <Navbar />
+      <div className="max-w-4xl mt-20  mx-auto p-6 bg-white rounded-lg shadow-md ">
         {course && (
           <>
             <div className="flex items-center mb-4">
@@ -73,6 +74,7 @@ const CourseDetails = () => {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 };

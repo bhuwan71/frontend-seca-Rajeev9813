@@ -43,7 +43,7 @@ const CourseComponent = ({ course }) => {
       </td>
       <td className="py-2 px-4">
         <button onClick={()=>{
-            navigate(`/admin/classSchedule/${course?._id}`)
+            navigate(`/course/${course._id}`)
         }} className="bg-blue-500 text-white text-sm px-3 py-1 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
           View
         </button>
