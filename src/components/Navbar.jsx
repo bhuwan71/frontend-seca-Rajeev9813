@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black text-white shadow-lg z-50 fixed w-full">
+    <nav className="bg-black text-white shadow-lg z-50  w-full">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center ">
           <div className="flex items-center">
@@ -45,8 +45,8 @@ const Navbar = () => {
           </div>
           <ul className="flex space-x-4 text-xl font-semibold">
             <li>
-              <Link to="/dashboard" className="">
-                Dashboard
+              <Link to="/" className="">
+                Home
               </Link>
             </li>
             <li>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 const Footer = () => {
+  const token = localStorage.getItem("token");
   return (
     <div className="relative mt-16 bg-deep-purple-accent-400">
       <svg
@@ -58,14 +59,17 @@ const Footer = () => {
                 Resources
               </p>
               <ul className="mt-2 space-y-2">
-                <li>
-                  <Link
-                    to="/admin/login"
-                    className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                  >
-                     Admin Login
-                  </Link>
-                </li>
+                {!token && (
+                  <li>
+                    <Link
+                      to="/admin/login"
+                      className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                    >
+                      Admin Login
+                    </Link>
+                  </li>
+                )}
+
                 <li>
                   <a
                     href="/"
