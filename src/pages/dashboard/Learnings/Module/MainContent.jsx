@@ -1,11 +1,12 @@
 import React from "react";
 import Upperbar from "./Upperbar";
+import Lowerbar from "./Lowerbar/Lowerbar";
 
 const MainContent = () => {
   return (
     <div className="w-full flex-grow p-4 ">
       <Upperbar />
-      <div className="mb-4 w-full h-full">
+      <div className=" w-full">
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="relative pb-9/16 h-80 w-full overflow-hidden">
               <iframe
@@ -18,8 +19,11 @@ const MainContent = () => {
                 allowFullScreen
               ></iframe>
             </div>
+            
           </div>
+          <Lowerbar />
         </div>
+        
     </div>
   );
 };
