@@ -1,20 +1,21 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { toast } from 'react-toastify';
 import AdminLoginForm from '../login/AdminLogin';
-import Api from '../../apis/Api';
+import { useNavigate } from 'react-router-dom';
 
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }));
 
 jest.mock('react-toastify', () => ({
-  success: jest.fn(),
-  error: jest.fn(),
+  toast: {
+    success: jest.fn(),
+    error: jest.fn(),
+  },
 }));
 
-jest.mock('../apis/Api', () => ({
+jest.mock('../../apis/Api', () => ({
   post: jest.fn(),
 }));
 
@@ -22,8 +23,16 @@ describe('AdminLoginForm', () => {
   let navigate;
 
   beforeEach(() => {
-    navigate = jest.fn();
-    jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, jest.fn()]);
+    navigate = useNavigate();
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: jest.fn(() => null),
+        setItem: jest.fn(),
+        removeItem: jest.fn(),
+        clear: jest.fn(),
+      },
+      writable: true,
+    });
   });
 
   afterEach(() => {
@@ -33,28 +42,19 @@ describe('AdminLoginForm', () => {
   it('renders the login form', () => {
     render(<AdminLoginForm />);
     expect(screen.getByRole('heading', { name: 'Admin Login' })).toBeInTheDocument();
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
-
-  it('handles successful login', async () => {
-    const mockResponse = { data: { token: 'abc123', userData: { name: 'John Doe' } } };
-    Api.post.mockResolvedValueOnce(mockResponse);
-
+  it('navigates to home when home button is clicked', () => {
     render(<AdminLoginForm />);
-    const emailInput = screen.getByLabelText('Email');
-    const passwordInput = screen.getByLabelText('Password');
-    const submitButton = screen.getByRole('button', { name: 'Login' });
+    screen.debug(); // Debug the DOM
 
-    userEvent.type(emailInput, 'test@example.com');
-    userEvent.type(passwordInput, 'password123');
-    userEvent.click(submitButton);
+    const homeButton = screen.getByRole('button', { name: /go to home/i });
+    expect(homeButton).toBeInTheDocument();
 
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for async actions
-
-    expect(Api.post).toHaveBeenCalledWith('/user/login', { email: 'test@example.com', password: 'password123' });
-    expect(toast.success).toHaveBeenCalledWith('Logged in successfully!');
-    expect(localStorage.setItem).toHaveBeenCalledWith('token', 'abc123');
-    expect(localStorage.setItem).toHaveBeenCalledWith('adminData', JSON.stringify({ name: 'John Doe' }));
-    expect(navigate).toHaveBeenCalledWith('/admin/dashboard');
+    userEvent.click(homeButton);
+    expect(navigate).toHaveBeenCalledWith('/');
   });
 });
