@@ -1,6 +1,5 @@
 import React from "react";
 import { FaChalkboardTeacher, FaClock, FaGlobe } from "react-icons/fa";
-import Layout from "../admin/admin_dashboard/layout";
 
 const classSchedule = [
   {
@@ -52,13 +51,13 @@ const Routine = () => {
               <div className="text-gray-700 mb-4">
                 <p className="flex items-center text-lg">
                   <FaClock className="text-green-500 mr-2" />
-                  {classInfo.time}
+                  {classInfo?.time}
                 </p>
               </div>
               <div className="text-gray-700">
                 <p className="flex items-center text-lg">
                   <FaChalkboardTeacher className="text-purple-500 mr-2" />
-                  {classInfo.teacher}
+                  {classInfo?.teacher}
                 </p>
               </div>
             </div>
